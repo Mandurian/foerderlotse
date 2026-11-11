@@ -91,6 +91,7 @@ def programm(z):
         "id": z["id_hash"],
         "titel": text(z.get("title")),
         "kurz": kurz,
+        "beschreibung": text(z.get("description")),
         "url": z["url"],
         "art": [ART.get(a, a) for a in liste(z.get("funding_type"))],
         "geber": [GEBER.get(g, g) for g in liste(z.get("funding_body"))],
@@ -108,13 +109,28 @@ def programm(z):
 
 
 def verknuepfe_antragshilfe(programme, hilfe):
-    """Eigene Antragshilfe per Titel-Stichwort an Programme hängen."""
+    """Eigene Antragshilfe über den Link des Programms zuordnen.
+
+    Jeder Eintrag in antragshilfe.json nennt in `url_enthaelt` Teile der Programm-URL
+    (bei der Förderdatenbank der Dateiname, z. B. "beg-heizungsfoerderung-privat-wohngebaeude").
+    Die URL ist stabiler als der Titel, der sich bei Richtlinienänderungen oft ändert.
+    """
     for p in programme:
-        titel = p["titel"].lower()
+        url = p["url"].lower()
         for h in hilfe:
-            if any(t.lower() in titel for t in h["titel_enthaelt"]):
+            if any(t.lower() in url for t in h.get("url_enthaelt", [])):
                 p["antragshilfe"] = h["id"]
                 break
+
+
+def schluessel(titel):
+    return re.sub(r"[^a-z0-9äöüß]+", "", titel.lower())
+
+
+def ohne_dubletten(eigene, programme):
+    """Eigene Einträge weglassen, sobald die Förderdatenbank das Programm selbst führt."""
+    vorhanden = {schluessel(p["titel"]) for p in programme}
+    return [e for e in eigene if schluessel(e["titel"]) not in vorhanden]
 
 
 def main():
@@ -135,6 +151,8 @@ def main():
     eigene = json.loads((DATA / "eu-privat.json").read_text(encoding="utf-8"))
     for e in eigene:
         e.setdefault("quelle", "eigen")
+        e.setdefault("beschreibung", "")
+    eigene = ohne_dubletten(eigene, programme)
     programme += eigene
 
     hilfe = json.loads((DATA / "antragshilfe.json").read_text(encoding="utf-8"))

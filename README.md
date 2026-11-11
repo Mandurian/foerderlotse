@@ -6,7 +6,8 @@ Findet für Privatpersonen passende Förderprogramme von Bund und EU und hilft b
 
 | Datei | Zweck |
 | --- | --- |
-| `index.html` | Die App (Prototyp, noch mit eingebauten Beispieldaten) |
+| `index.html` | Die App, lädt `data/programme.json` |
+| `manifest.webmanifest`, `sw.js`, `icons/` | Installierbare Web-App (PWA), offline nutzbar |
 | `scripts/build_data.py` | Lädt die Förderdatenbank und baut `data/programme.json` |
 | `.github/workflows/daten.yml` | Startet das Skript jeden Montag automatisch |
 | `data/eu-privat.json` | Von Hand gepflegte EU-Programme für Privatpersonen |
@@ -36,10 +37,10 @@ Mit `python scripts/build_data.py --mit-laendern` kommen Landesprogramme dazu.
 
 ## Antragshilfe pflegen
 
-Jeder Eintrag in `data/antragshilfe.json` wird über `titel_enthaelt` an Programme gehängt:
-Enthält der Programmtitel eines der Stichwörter, bekommt das Programm diese Antragshilfe.
-Nach dem ersten echten Lauf in `data/programme.json` prüfen, ob die Zuordnung stimmt
-(`meta.json` zeigt, wie viele Programme eine Antragshilfe haben).
+Jeder Eintrag in `data/antragshilfe.json` wird über `url_enthaelt` an Programme gehängt:
+Enthält der Link des Programms einen dieser Teile (bei der Förderdatenbank der Dateiname der Seite),
+bekommt das Programm diese Antragshilfe. Die `stichworte` eines Eintrags helfen der App beim Abgleich.
+`meta.json` zeigt nach jedem Lauf, wie viele Programme eine Antragshilfe haben.
 
 ## Lokal testen
 

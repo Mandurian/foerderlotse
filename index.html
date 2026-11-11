@@ -1,4 +1,14 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Förderlotse</title>
+<meta name="description" content="Passende Förderprogramme von Bund und EU für dein Vorhaben finden, mit Schritt-für-Schritt-Antragshilfe.">
+<meta name="theme-color" content="#0f6f74">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap">
@@ -6,22 +16,25 @@
 /* Layout: eine Spalte wie ein Antragsformular – Vorhaben oben, Treffer als Aktenkarten, Antragshilfe klappt pro Programm auf */
 :root{
   --paper:#f3f6f7; --sheet:#ffffff; --ink:#132a33; --muted:#566b73; --line:#d5e0e3;
-  --petrol:#0f6f74; --petrol-soft:#e1f0ef; --sun:#f2c230; --sun-ink:#5a4300; --sun-soft:#fdf3cf;
+  --petrol:#0f6f74; --petrol-soft:#e1f0ef; --sun-ink:#5a4300; --sun-soft:#fdf3cf;
   --warn:#b4471f; --warn-soft:#fbe7df;
-  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --f-body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
-  --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",monospace;
+  color-scheme:light;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --paper:#0d171b; --sheet:#14232a; --ink:#e3eef0; --muted:#93a9b0; --line:#25393f;
-  --petrol:#5cc4c4; --petrol-soft:#123a3c; --sun:#f2c230; --sun-ink:#ffe38a; --sun-soft:#3a3010;
+  --petrol:#5cc4c4; --petrol-soft:#123a3c; --sun-ink:#ffe38a; --sun-soft:#3a3010;
   --warn:#f08a62; --warn-soft:#3d2018; color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#0d171b; --sheet:#14232a; --ink:#e3eef0; --muted:#93a9b0; --line:#25393f;
-  --petrol:#5cc4c4; --petrol-soft:#123a3c; --sun:#f2c230; --sun-ink:#ffe38a; --sun-soft:#3a3010;
+  --petrol:#5cc4c4; --petrol-soft:#123a3c; --sun-ink:#ffe38a; --sun-soft:#3a3010;
   --warn:#f08a62; --warn-soft:#3d2018; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font:400 1rem/1.55 var(--f-body);padding:0 16px}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.55 var(--f-body);padding:env(safe-area-inset-top,0px) 16px env(safe-area-inset-bottom,0px)}
+[hidden]{display:none!important}
 .wrap{max-width:46rem;margin:0 auto;padding-block:1.5rem 4rem;display:grid;gap:1.5rem}
 header{display:grid;gap:.4rem}
 .brand{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
@@ -29,298 +42,238 @@ h1{font:800 clamp(2rem,6vw,2.8rem)/1 var(--f-display);margin:0;letter-spacing:-.
 .az{font:500 .75rem var(--f-mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
 .lead{margin:0;color:var(--muted);max-width:60ch}
 h2{font:600 1.25rem/1.2 var(--f-display);margin:0;text-wrap:balance}
+.lbl{font:500 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .panel{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:1.1rem;display:grid;gap:1rem}
-label.f{font:500 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 textarea,select{width:100%;font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:.7rem}
-textarea{min-height:6rem;resize:vertical}
-textarea:focus,select:focus,button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--petrol);outline-offset:2px}
+textarea{min-height:5.5rem;resize:vertical}
+textarea:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--petrol);outline-offset:2px}
 .field{display:grid;gap:.35rem}
 .chips{display:flex;flex-wrap:wrap;gap:.4rem}
 .chip{font:inherit;font-size:.9rem;background:transparent;color:var(--ink);border:1px dashed var(--line);border-radius:999px;padding:.25rem .7rem;cursor:pointer}
 .chip:hover{border-color:var(--petrol);color:var(--petrol)}
-.roles{display:flex;flex-wrap:wrap;gap:.4rem}
-.role{position:relative}
-.role input{position:absolute;opacity:0}
-.role span{display:inline-block;border:1px solid var(--line);border-radius:4px;padding:.3rem .7rem;font-size:.92rem;cursor:pointer}
-.role input:checked+span{background:var(--petrol);border-color:var(--petrol);color:var(--sheet)}
-.role input:focus-visible+span{outline:2px solid var(--petrol);outline-offset:2px}
 .row{display:flex;gap:.8rem;flex-wrap:wrap;align-items:end}
-.row .field{flex:1 1 12rem}
+.row .field{flex:1 1 10rem}
 .go{font:600 1rem var(--f-body);background:var(--ink);color:var(--paper);border:0;border-radius:4px;padding:.75rem 1.4rem;cursor:pointer}
 .go:hover{background:var(--petrol)}
 .note{font-size:.88rem;color:var(--muted);margin:0}
 .reshead{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
 .count{font:500 .8rem var(--f-mono);color:var(--muted)}
 .results{display:grid;gap:.9rem}
-.card{background:var(--sheet);border:1px solid var(--line);border-radius:6px;display:grid;grid-template-columns:4.2rem 1fr;overflow:hidden}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:6px;display:grid;grid-template-columns:4.2rem minmax(0,1fr);overflow:hidden}
 .score{background:var(--petrol-soft);color:var(--petrol);display:grid;place-content:center;text-align:center;padding:.6rem .2rem;border-right:1px solid var(--line)}
 .score b{font:800 1.5rem/1 var(--f-display)}
 .score small{font:500 .6rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
-.body{padding:.9rem 1rem;display:grid;gap:.5rem;min-width:0}
-.card h3{font:600 1.08rem/1.25 var(--f-display);margin:0}
+.body{padding:.9rem 1rem;display:grid;gap:.55rem;min-width:0}
+.card h3{font:600 1.08rem/1.25 var(--f-display);margin:0;overflow-wrap:anywhere}
 .meta{display:flex;flex-wrap:wrap;gap:.35rem}
 .tag{font:500 .7rem var(--f-mono);letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--line);border-radius:3px;padding:.1rem .4rem;color:var(--muted)}
 .tag.zu{background:var(--petrol-soft);color:var(--petrol);border-color:transparent}
 .tag.eu{background:var(--sun-soft);color:var(--sun-ink);border-color:transparent}
 .tag.alert{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.tag.hilfe{border-color:var(--petrol);color:var(--petrol)}
 .card p{margin:0}
+.txt{white-space:pre-line;overflow-wrap:anywhere}
+.clamp{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.more{font:inherit;font-size:.88rem;background:none;border:0;padding:0;color:var(--petrol);cursor:pointer;justify-self:start}
 .why{font-size:.88rem;color:var(--muted)}
 .why mark{background:var(--sun-soft);color:var(--ink);padding:0 .2rem;border-radius:2px}
 .actions{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
 .btn2{font:600 .92rem var(--f-body);background:transparent;color:var(--petrol);border:1px solid var(--petrol);border-radius:4px;padding:.4rem .8rem;cursor:pointer}
 a{color:var(--petrol)}
-.help{border-top:1px dashed var(--line);padding-top:.8rem;display:grid;gap:.8rem}
-.help h4{font:500 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0}
-.help ol,.help ul{margin:0;padding-left:1.2rem;display:grid;gap:.3rem}
+.help{border-top:1px dashed var(--line);padding-top:.8rem;display:grid;gap:.9rem}
+.help h4{font:500 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 .35rem}
+.help ul{margin:0;padding-left:1.2rem;display:grid;gap:.25rem}
 .trap{background:var(--warn-soft);color:var(--ink);border-left:3px solid var(--warn);padding:.6rem .8rem;border-radius:0 4px 4px 0;font-size:.95rem}
+.checks{display:grid;gap:.35rem}
 .check{display:flex;gap:.5rem;align-items:flex-start}
-.check input{margin-top:.3rem;accent-color:var(--petrol)}
+.check input{margin-top:.3rem;accent-color:var(--petrol);flex:none}
 .check.done span{text-decoration:line-through;color:var(--muted)}
-.draft{font:400 .92rem/1.5 var(--f-body);background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:.7rem;white-space:pre-wrap}
+.orig{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:.7rem;font-size:.93rem;display:grid;gap:.6rem}
+.draft{font:400 .92rem/1.5 var(--f-body);background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:.7rem;white-space:pre-wrap;overflow-wrap:anywhere}
+.src{font-size:.78rem;color:var(--muted);overflow-wrap:anywhere}
 .empty{background:var(--sheet);border:1px dashed var(--line);border-radius:6px;padding:1.2rem;color:var(--muted)}
 footer{font-size:.82rem;color:var(--muted);display:grid;gap:.4rem;border-top:1px solid var(--line);padding-top:1rem}
-@media (max-width:30rem){.card{grid-template-columns:1fr}.score{grid-auto-flow:column;gap:.5rem;justify-content:start;padding:.4rem 1rem;border-right:0;border-bottom:1px solid var(--line)}}
+footer p{margin:0}
+@media (max-width:30rem){.card{grid-template-columns:minmax(0,1fr)}.score{grid-auto-flow:column;gap:.5rem;justify-content:start;align-items:baseline;padding:.4rem 1rem;border-right:0;border-bottom:1px solid var(--line)}}
 @media (prefers-reduced-motion:no-preference){.card{animation:in .25s ease-out both}@keyframes in{from{transform:translateY(4px)}to{transform:none}}}
 </style>
-
+</head>
+<body>
 <div class="wrap">
   <header>
-    <div class="brand"><h1>Förderlotse</h1><span class="az">Prototyp · v0.1</span></div>
-    <p class="lead">Beschreibe dein Vorhaben in eigenen Worten. Der Lotse sucht passende Förderprogramme von Bund und EU und zeigt dir für jedes Programm, wie der Antrag abläuft.</p>
+    <div class="brand"><h1>Förderlotse</h1><span class="az" id="stand">Lade Daten …</span></div>
+    <p class="lead">Beschreibe dein Vorhaben in eigenen Worten. Der Lotse durchsucht die Förderprogramme von Bund und EU für Privatpersonen und zeigt dir, wie der Antrag abläuft.</p>
   </header>
 
   <form class="panel" id="form">
     <div class="field">
-      <label class="f" for="vorhaben">Dein Vorhaben</label>
+      <label class="lbl" for="vorhaben">Dein Vorhaben</label>
       <textarea id="vorhaben">Ich möchte in unserem Einfamilienhaus die alte Ölheizung durch eine Wärmepumpe ersetzen und das Dach dämmen.</textarea>
     </div>
     <div class="field">
-      <span class="f" style="font:500 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">Beispiele</span>
+      <span class="lbl">Beispiele</span>
       <div class="chips" id="chips"></div>
     </div>
-    <fieldset class="field" style="border:0;padding:0;margin:0">
-      <legend class="f" style="font:500 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem">Ich bin …</legend>
-      <div class="roles" id="roles"></div>
-    </fieldset>
     <div class="row">
       <div class="field">
-        <label class="f" for="art">Förderart</label>
-        <select id="art"><option value="">Alle</option><option value="Zuschuss">Nur Zuschüsse</option><option value="Kredit">Nur Kredite</option></select>
+        <label class="lbl" for="art">Förderart</label>
+        <select id="art"><option value="">Alle</option><option value="Zuschuss">Zuschüsse</option><option value="Kredit">Kredite</option></select>
+      </div>
+      <div class="field">
+        <label class="lbl" for="land">Bundesland</label>
+        <select id="land"></select>
       </div>
       <button class="go" type="submit">Förderung finden</button>
     </div>
-    <p class="note">Der Abgleich läuft hier über Stichwörter und dein Profil, direkt im Browser. Der KI-Abgleich mit Ollama oder Claude Haiku kommt in der eigenständigen App dazu.</p>
+    <p class="note">Der Abgleich läuft über Stichwörter direkt auf deinem Gerät. Dein Text verlässt den Browser nicht.</p>
   </form>
 
   <section style="display:grid;gap:.9rem" aria-live="polite">
     <div class="reshead"><h2>Passende Programme</h2><span class="count" id="count"></span></div>
-    <div class="results" id="results"></div>
+    <div class="results" id="results"><div class="empty">Programme werden geladen …</div></div>
+    <button class="btn2" type="button" id="mehr" hidden>Weitere Treffer zeigen</button>
   </section>
 
   <footer>
-    <p style="margin:0"><strong>Beispieldaten, keine Rechtsberatung.</strong> Die Programme sind eine kleine, von Hand gepflegte Auswahl. Konditionen, Fördersätze und Budgets ändern sich oft. Prüfe vor jedem Antrag die Seite des Förderträgers.</p>
-    <p style="margin:0">Später: Daten aus der Förderdatenbank des Bundes (über den wöchentlichen Export von CorrelAid) und dem EU Funding &amp; Tenders Portal.</p>
+    <p><strong>Keine Rechtsberatung.</strong> Konditionen, Fördersätze und Budgets ändern sich oft. Verbindlich ist immer die Seite des Förderträgers. Prüfe sie vor jedem Antrag.</p>
+    <p id="quelle">Programmdaten: Förderdatenbank des Bundes, aufbereitet von <a href="https://fdb.cdl.correlaid.org/id/dataset/foerderdatenbank-programme" target="_blank" rel="noopener">CorrelAid / Civic Data Lab</a>, Lizenz <a href="https://creativecommons.org/licenses/by-nd/4.0/deed.de" target="_blank" rel="noopener">CC BY-ND 4.0</a>. Programmtexte werden unverändert angezeigt. Antragshilfe: eigene Texte des Förderlotsen.</p>
   </footer>
 </div>
 
 <script>
-const ROLES=[["eig","Eigentümer:in"],["miet","Mieter:in"],["stud","in Ausbildung / Studium"],["job","berufstätig"],["arbeitslos","arbeitsuchend"],["gruend","Gründer:in"],["fam","Familie mit Kindern"],["jung","18–30 Jahre"]];
-const CHIPS=["Wärmepumpe einbauen","Haus kaufen als Familie","Bad barrierefrei umbauen","Photovoltaik aufs Dach","Studium finanzieren","Meisterkurs machen","Auslandssemester","Selbstständig machen","Weiterbildung, bin arbeitslos"];
-
-// Jedes Programm: Stichwörter (Wortstämme), passende Rollen, Antragshilfe.
-const P=[
-{id:"kfw458",t:"Heizungsförderung für Privatpersonen (KfW 458)",tr:"KfW",eb:"Bund",art:"Zuschuss",
- k:["heizung","wärmepumpe","waermepumpe","ölheizung","gasheizung","pellet","biomasse","fernwärme","solarthermie","heizungstausch","heizen"],r:["eig"],
- s:"Zuschuss für den Einbau einer klimafreundlichen Heizung im selbstgenutzten oder vermieteten Wohngebäude. Grundförderung plus Boni, z. B. für den Austausch alter fossiler Heizungen und bei geringem Einkommen.",
- u:"https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/F%C3%B6rderprodukte/Heizungsf%C3%B6rderung-f%C3%BCr-Privatpersonen-Wohngeb%C3%A4ude-(458)/",
- st:"Regeln können sich mit der Reform des Gebäudeenergiegesetzes ändern",
- w:"Online im KfW-Kundenportal „Meine KfW“",
- steps:["Angebot eines Fachbetriebs einholen","Liefer- oder Leistungsvertrag mit auflösender oder aufschiebender Bedingung abschließen (gilt nur, wenn die Förderung zugesagt wird)","Bestätigung zum Antrag (BzA) vom Fachbetrieb oder Energieeffizienz-Experten erstellen lassen","Zuschuss in „Meine KfW“ beantragen, erst danach mit dem Einbau beginnen","Nach Abschluss: Rechnungen und Bestätigung nach Durchführung hochladen"],
- docs:["Angebot / Vertrag mit Förderbedingung","Bestätigung zum Antrag (BzA)","bei Einkommensbonus: Einkommensnachweis"],
- trap:"Der Antrag muss vor Beginn der Arbeiten gestellt sein. Ein Vertrag ohne Förderbedingung kann den Zuschuss kosten."},
-{id:"bafaem",t:"BEG Einzelmaßnahmen: Dämmung, Fenster, Anlagentechnik (BAFA)",tr:"BAFA",eb:"Bund",art:"Zuschuss",
- k:["dämm","daemm","dach","fassade","fenster","außenwand","kellerdecke","lüftung","heizungsoptimierung","hydraulischer abgleich","sanier","energieberatung","isfp","haustür"],r:["eig"],
- s:"Zuschuss für einzelne Maßnahmen an der Gebäudehülle (z. B. Dämmung, Fenster), für Anlagentechnik und Heizungsoptimierung. Mit individuellem Sanierungsfahrplan (iSFP) gibt es einen Bonus.",
- u:"https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/Sanierung_Wohngebaeude/sanierung_wohngebaeude_node.html",
- st:"Fördersätze vor Antrag prüfen",
- w:"Online-Antrag im BAFA-Portal",
- steps:["Energieeffizienz-Experten (Liste: energie-effizienz-experten.de) beauftragen","Technische Projektbeschreibung (TPB) erstellen lassen","Vertrag mit Förderbedingung abschließen","Antrag beim BAFA stellen, Eingangsbestätigung abwarten","Maßnahme umsetzen, dann Verwendungsnachweis einreichen"],
- docs:["Technische Projektbeschreibung (TPB)","Angebot / Vertrag","ggf. iSFP für den Bonus"],
- trap:"Für Dämmung und Fenster ist meist ein Energieeffizienz-Experte Pflicht. Dessen Kosten sind teilweise förderfähig."},
-{id:"kfw261",t:"Wohngebäude – Kredit für Sanierung zum Effizienzhaus (KfW 261)",tr:"KfW",eb:"Bund",art:"Kredit",
- k:["sanier","effizienzhaus","komplettsanierung","modernisier","dämm","energetisch","altbau"],r:["eig"],
- s:"Zinsgünstiger Kredit mit Tilgungszuschuss, wenn ein Haus umfassend auf ein Effizienzhaus-Niveau saniert wird.",
- u:"https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/",
- st:"",w:"Über deine Hausbank oder einen Finanzierungspartner",
- steps:["Energieeffizienz-Experten einbinden, Zielstandard festlegen","Bestätigung zum Antrag erstellen lassen","Kredit über die Hausbank beantragen, vor Vorhabenbeginn","Sanierung durchführen, Bestätigung nach Durchführung einreichen"],
- docs:["Bestätigung zum Antrag","Finanzierungsunterlagen für die Bank (Einkommen, Grundbuch)"],
- trap:"Die Bank muss den Antrag bei der KfW gestellt haben, bevor Aufträge vergeben werden."},
-{id:"kfw270",t:"Erneuerbare Energien – Standard (KfW 270)",tr:"KfW",eb:"Bund",art:"Kredit",
- k:["photovoltaik","pv","solar","solaranlage","stromspeicher","batteriespeicher","speicher","balkonkraftwerk","wallbox"],r:["eig"],
- s:"Kredit für Anlagen, die Strom aus erneuerbaren Energien erzeugen, z. B. eine Photovoltaik-Anlage mit Speicher. Auch Privatpersonen können ihn nutzen.",
- u:"https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/F%C3%B6rderprodukte/Erneuerbare-Energien-Standard-(270)/",
- st:"",w:"Über deine Hausbank",
- steps:["Angebote für die Anlage vergleichen","Mit der Hausbank Kredit besprechen, Antrag vor Vorhabenbeginn","Anlage installieren lassen, beim Marktstammdatenregister anmelden"],
- docs:["Angebot / Kostenvoranschlag","Einkommensnachweise für die Bank"],
- trap:"Ein reiner Kredit, kein Zuschuss. Rechne aus, ob er günstiger ist als die Finanzierung aus eigenen Mitteln."},
-{id:"kfw159",t:"Altersgerecht Umbauen – Kredit (KfW 159)",tr:"KfW",eb:"Bund",art:"Kredit",
- k:["barrierefrei","barrierearm","altersgerecht","bad","dusche","treppenlift","rollstuhl","schwelle","umbau","pflege","einbruch"],r:["eig","miet"],
- s:"Kredit für Umbauten, die Barrieren abbauen, etwa ein bodengleiches Bad, Rampen oder breitere Türen. Auch Mieter:innen können ihn nutzen.",
- u:"https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/",
- st:"",w:"Über deine Hausbank",
- steps:["Maßnahmen und technische Mindestanforderungen klären","Als Mieter:in: Zustimmung der Vermietung einholen","Kredit über die Hausbank vor Beginn beantragen"],
- docs:["Kostenaufstellung","ggf. Zustimmung der Vermietung"],
- trap:"Prüfe zusätzlich die Pflegekasse: Bei einem Pflegegrad gibt es für wohnumfeldverbessernde Maßnahmen einen eigenen Zuschuss."},
-{id:"kfw455b",t:"Barrierereduzierung – Investitionszuschuss (KfW 455-B)",tr:"KfW",eb:"Bund",art:"Zuschuss",
- k:["barrierefrei","barrierearm","altersgerecht","bad","dusche","treppenlift","schwelle","umbau"],r:["eig","miet"],
- s:"Zuschuss für den Abbau von Barrieren in Wohnungen und Häusern.",
- u:"https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/",
- st:"Mittel sind oft für das Jahr ausgeschöpft",
- w:"Online im KfW-Zuschussportal",
- steps:["Verfügbarkeit der Mittel auf der KfW-Seite prüfen","Zuschuss online beantragen, vor Beginn","Nach Umbau Rechnungen hochladen"],
- docs:["Kostenvoranschläge","Rechnungen nach Abschluss"],
- trap:"Bei ausgeschöpften Mitteln sofort auf den Kredit 159 oder Landesprogramme ausweichen."},
-{id:"kfw300",t:"Wohneigentum für Familien (KfW 300)",tr:"KfW",eb:"Bund",art:"Kredit",
- k:["haus kaufen","wohnung kaufen","eigenheim","neubau","bauen","hauskauf","wohneigentum","immobilie kaufen","eigentum"],r:["fam"],
- s:"Zinsgünstiger Kredit für Familien mit Kindern und begrenztem Einkommen, die klimafreundlich neu bauen oder einen solchen Neubau erstmals kaufen.",
- u:"https://www.kfw.de/inlandsfoerderung/Privatpersonen/Neubau/",
- st:"Einkommensgrenzen vor Antrag prüfen",w:"Über deine Hausbank",
- steps:["Einkommensgrenze anhand der Steuerbescheide prüfen","Nachweis des Effizienzstandards einplanen","Kredit über die Hausbank vor Kaufvertrag bzw. Baubeginn beantragen"],
- docs:["Einkommensteuerbescheide","Nachweise zu den Kindern","Bau- oder Kaufunterlagen"],
- trap:"Gilt nur für Familien, die noch kein Wohneigentum haben."},
-{id:"kfw308",t:"Jung kauft Alt – Wohneigentum für Familien, Bestand (KfW 308)",tr:"KfW",eb:"Bund",art:"Kredit",
- k:["haus kaufen","altbau","bestandsimmobilie","hauskauf","wohneigentum","sanierungsbedürftig","eigenheim"],r:["fam"],
- s:"Kredit für Familien, die ein sanierungsbedürftiges Bestandshaus kaufen und es danach energetisch sanieren.",
- u:"https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/",
- st:"Einkommensgrenzen vor Antrag prüfen",w:"Über deine Hausbank",
- steps:["Energieausweis des Hauses prüfen (schlechte Effizienzklasse ist Voraussetzung)","Sanierungspflicht und -frist einplanen","Kredit vor Unterschrift des Kaufvertrags beantragen"],
- docs:["Energieausweis","Einkommensteuerbescheide","Kaufvertragsentwurf"],
- trap:"Mit dem Kredit übernimmst du die Pflicht, das Haus innerhalb einer Frist zu sanieren."},
-{id:"kfw124",t:"Wohneigentumsprogramm (KfW 124)",tr:"KfW",eb:"Bund",art:"Kredit",
- k:["haus kaufen","wohnung kaufen","eigenheim","bauen","hauskauf","wohneigentum","immobilie kaufen","eigentum","genossenschaft"],r:["eig","miet","fam","job"],
- s:"Kredit für den Bau oder Kauf einer selbst genutzten Immobilie, ohne Einkommensgrenze. Gut als Baustein einer größeren Finanzierung.",
- u:"https://www.kfw.de/inlandsfoerderung/Privatpersonen/",
- st:"",w:"Über deine Hausbank",
- steps:["Gesamtfinanzierung mit der Bank planen","Kredit vor Kaufvertrag bzw. Baubeginn beantragen"],
- docs:["Übliche Finanzierungsunterlagen"],trap:"Der Zinsvorteil ist je nach Marktlage klein. Mit dem Bankangebot vergleichen."},
-{id:"wop",t:"Wohnungsbauprämie",tr:"Finanzamt / Bausparkasse",eb:"Bund",art:"Zuschuss",
- k:["bausparen","bausparvertrag","sparen","eigenkapital","wohneigentum"],r:["job","jung","stud"],
- s:"Staatliche Prämie auf Einzahlungen in einen Bausparvertrag, wenn das Einkommen unter der Grenze liegt.",
- u:"https://www.bundesfinanzministerium.de/",st:"Einkommensgrenzen prüfen",w:"Über die Bausparkasse, jährlich",
- steps:["Bausparvertrag abschließen","Jährlich den Antrag auf Wohnungsbauprämie bei der Bausparkasse einreichen"],
- docs:["Antragsformular der Bausparkasse"],trap:"Den Antrag nicht vergessen: Er muss jedes Jahr gestellt werden."},
-{id:"bafoeg",t:"BAföG",tr:"Amt für Ausbildungsförderung",eb:"Bund",art:"Zuschuss",
- k:["studium","studieren","uni","hochschule","schule","ausbildung finanzieren","semester","schüler"],r:["stud","jung"],
- s:"Unterstützung für Studium und manche Schulausbildungen. Beim Studium ist die Hälfte Zuschuss, die andere Hälfte ein zinsloses Darlehen.",
- u:"https://www.bafög.de/",st:"",w:"Online über „BAföG Digital“",
- steps:["Mit dem BAföG-Rechner grob prüfen","Antrag bei BAföG Digital stellen, möglichst vor Semesterbeginn","Einkommensnachweise der Eltern nachreichen lassen"],
- docs:["Immatrikulationsbescheinigung","Einkommensnachweise der Eltern","Kontoauszüge zum eigenen Vermögen"],
- trap:"BAföG gibt es frühestens ab dem Monat, in dem der Antrag eingeht. Lieber unvollständig früh einreichen."},
-{id:"afbg",t:"Aufstiegs-BAföG",tr:"Länder / KfW",eb:"Bund",art:"Zuschuss",
- k:["meister","techniker","fachwirt","erzieher","fortbildung","aufstieg","weiterbildung","betriebswirt"],r:["job","arbeitslos","gruend"],
- s:"Förderung für berufliche Aufstiegsfortbildungen wie Meister, Techniker oder Fachwirt. Ein Teil ist Zuschuss, beim Darlehen gibt es Erlass bei bestandener Prüfung.",
- u:"https://www.aufstiegs-bafoeg.de/",st:"",w:"Bei der zuständigen Stelle des Bundeslandes",
- steps:["Lehrgang wählen und Anmeldung bestätigen lassen","Antrag bei der Landesstelle stellen","Bewilligten Darlehensteil bei der KfW abrufen"],
- docs:["Anmeldebestätigung des Lehrgangs","Nachweis der Vorqualifikation"],trap:"Den Antrag spätestens bis zum Ende des Lehrgangs stellen, sonst verfällt der Anspruch für bereits abgelaufene Zeit."},
-{id:"bildungsgutschein",t:"Bildungsgutschein",tr:"Agentur für Arbeit / Jobcenter",eb:"Bund",art:"Zuschuss",
- k:["weiterbildung","umschulung","kurs","qualifizierung","arbeitslos","job verloren","neuer beruf"],r:["arbeitslos","job"],
- s:"Die Arbeitsagentur oder das Jobcenter übernimmt Kosten einer zertifizierten Weiterbildung, wenn sie für die Arbeitsaufnahme nötig ist.",
- u:"https://www.arbeitsagentur.de/karriere-und-weiterbildung/bildungsgutschein",st:"Ermessensleistung",w:"Im Gespräch mit der Vermittlung",
- steps:["Passenden zertifizierten Kurs suchen (AZAV)","Termin bei der Vermittlung, Bedarf begründen","Gutschein vor Kursbeginn beim Bildungsträger einlösen"],
- docs:["Kursangebot mit AZAV-Zulassung","Lebenslauf, Stellenanzeigen als Begründung"],trap:"Ohne Gutschein vor Kursbeginn gibt es keine Erstattung."},
-{id:"gruendungszuschuss",t:"Gründungszuschuss",tr:"Agentur für Arbeit",eb:"Bund",art:"Zuschuss",
- k:["selbstständig","selbststaendig","gründ","gruend","startup","existenzgründung","freiberuf","eigenes geschäft"],r:["arbeitslos","gruend"],
- s:"Zuschuss zum Lebensunterhalt in der Startphase, wenn du aus dem Bezug von Arbeitslosengeld I gründest.",
- u:"https://www.arbeitsagentur.de/existenzgruendung-gruendungszuschuss",st:"Ermessensleistung",w:"Bei deiner Arbeitsagentur",
- steps:["Noch ausreichend Restanspruch auf ALG I sicherstellen","Businessplan schreiben","Tragfähigkeit von fachkundiger Stelle (z. B. IHK) bestätigen lassen","Antrag vor Aufnahme der Selbstständigkeit stellen"],
- docs:["Businessplan","Tragfähigkeitsbescheinigung","Lebenslauf"],trap:"Die Selbstständigkeit erst nach dem Antrag anmelden."},
-{id:"kfw067",t:"ERP-Gründerkredit – StartGeld (KfW 067)",tr:"KfW",eb:"Bund",art:"Kredit",
- k:["selbstständig","gründ","gruend","startup","existenzgründung","freiberuf","eigenes geschäft","nebenerwerb"],r:["gruend","job","arbeitslos"],
- s:"Kredit für Gründungen und junge Unternehmen mit kleinem Finanzierungsbedarf, auch im Nebenerwerb.",
- u:"https://www.kfw.de/inlandsfoerderung/Unternehmen/Gr%C3%BCnden-Nachfolgen/",st:"",w:"Über deine Hausbank",
- steps:["Businessplan und Finanzplan erstellen","Gründungsberatung nutzen (oft selbst gefördert)","Kredit über die Hausbank beantragen"],
- docs:["Businessplan","Finanz- und Liquiditätsplan"],trap:"Banken lehnen kleine Gründungskredite oft ab. Mehrere Banken ansprechen."},
-{id:"erasmus",t:"Erasmus+ (Studium, Praktikum, Ausbildung im Ausland)",tr:"EU über Hochschule / DAAD / NA-BIBB",eb:"EU",art:"Zuschuss",
- k:["ausland","auslandssemester","erasmus","austausch","praktikum im ausland","europa","azubi ausland"],r:["stud","jung"],
- s:"Monatlicher Zuschuss für Studium, Praktikum oder Ausbildungsabschnitte im europäischen Ausland. Beantragt wird über die eigene Hochschule oder den Ausbildungsbetrieb.",
- u:"https://erasmus-plus.ec.europa.eu/de",st:"",w:"Über das International Office deiner Hochschule",
- steps:["Fristen des International Office erfragen","Bewerbung mit Motivationsschreiben","Learning Agreement abschließen","Grant Agreement unterschreiben"],
- docs:["Motivationsschreiben","Notenübersicht","Learning Agreement"],trap:"Hochschulinterne Fristen liegen oft fast ein Jahr vor dem Auslandsaufenthalt."},
-{id:"discovereu",t:"DiscoverEU",tr:"EU-Kommission",eb:"EU",art:"Zuschuss",
- k:["reisen","interrail","zug","europa entdecken","18","bahnpass"],r:["jung"],
- s:"Kostenloser Bahnpass für 18-Jährige, um Europa zu erkunden. Vergabe in Bewerbungsrunden mit Quiz.",
- u:"https://youth.europa.eu/discovereu_de",st:"Nur in Bewerbungsrunden",w:"Online im Europäischen Jugendportal",
- steps:["Bewerbungsrunde abwarten","Quiz und Formular ausfüllen","Bei Zusage Reisezeitraum wählen"],
- docs:["Ausweisdaten"],trap:"Nur wer im jeweiligen Jahrgang geboren ist, darf mitmachen."},
-{id:"esc",t:"Europäisches Solidaritätskorps",tr:"EU über Jugend für Europa",eb:"EU",art:"Zuschuss",
- k:["freiwilligendienst","ehrenamt","soziales jahr","ausland","engagement","volunteer"],r:["jung","stud","arbeitslos"],
- s:"Freiwilligendienst im In- oder Ausland für 18- bis 30-Jährige. Unterkunft, Verpflegung, Taschengeld und Versicherung sind abgedeckt.",
- u:"https://youth.europa.eu/solidarity_de",st:"",w:"Online im Europäischen Jugendportal",
- steps:["Profil im Jugendportal anlegen","Auf Projekte bewerben","Vorbereitungsseminar besuchen"],
- docs:["Lebenslauf","Motivationsschreiben"],trap:"Projekte suchen sich die Teilnehmenden aus. Mehrere Bewerbungen erhöhen die Chance."}
-];
+const CHIPS=["Wärmepumpe einbauen","Haus kaufen als Familie","Bad barrierefrei umbauen","Photovoltaik aufs Dach","Elektroauto leasen","Studium finanzieren","Meisterkurs machen","Auslandssemester","Weiterbildung, bin arbeitslos","Album aufnehmen mit meiner Band","Lärm von der Bahnstrecke"];
+const LAENDER=[["","Alle Bundesländer"],["baden_wuerttemberg","Baden-Württemberg"],["bayern","Bayern"],["berlin","Berlin"],["brandenburg","Brandenburg"],["bremen","Bremen"],["hamburg","Hamburg"],["hessen","Hessen"],["mecklenburg_vorpommern","Mecklenburg-Vorpommern"],["niedersachsen","Niedersachsen"],["nordrhein_westfalen","Nordrhein-Westfalen"],["rheinland_pfalz","Rheinland-Pfalz"],["saarland","Saarland"],["sachsen","Sachsen"],["sachsen_anhalt","Sachsen-Anhalt"],["schleswig_holstein","Schleswig-Holstein"],["thueringen","Thüringen"]];
+// Wörter aus dem Alltag → Förderbereiche der Förderdatenbank
+const BEREICH={wohnungsbau_modernisierung:["haus","wohnung","bauen","kaufen","sanier","modernis","umbau","eigentum","miete","dach","bad"],energieeffizienz_erneuerbare_energien:["heiz","wärme","energie","solar","photovolt","dämm","strom","fenster"],aus_weiterbildung:["studi","ausbild","weiterbild","schule","kurs","meister","lehrgang","stipend","umschul","semester"],mobilitaet:["auto","fahrzeug","laden","wallbox","fahrrad","bahn"],kultur_medien_sport:["musik","band","film","kunst","kultur","album","sport","kino"],gesundheit_soziales:["gesund","pflege","kind","familie","behind"],arbeit:["arbeit","job","arbeitslos","beruf","entlass"],umwelt_naturschutz:["umwelt","natur","moor","klima","lärm"],existenzgruendung_festigung:["gründ","selbststä","startup","firma"],landwirtschaft_laendliche_entwicklung:["dorf","land","hof","bauer"]};
+const STOP=new Set("und oder der die das den dem des ein eine einen einem einer ich wir mein meine meinen unser unsere unseren mit für fuer auf aus von vom zum zur bei nach über ueber wie was will möchte moechte würde gerne mich mir uns ist sind bin hat haben neue neuen alte alten durch auch noch nicht kein keine sowie dass weil wenn".split(" "));
 
 const $=s=>document.querySelector(s);
 const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-let checks=store.get("fl-checks",{});
+let checks=store.get("fl-checks",{}), P=[], H={}, last=[], shown=0, lastText="";
 
-$("#roles").innerHTML=ROLES.map(([v,l])=>`<label class="role"><input type="checkbox" id="role-${v}" value="${v}" ${v==="eig"?"checked":""}><span>${l}</span></label>`).join("");
-$("#chips").innerHTML=CHIPS.map(c=>`<button type="button" class="chip">${c}</button>`).join("");
-$("#chips").addEventListener("click",e=>{if(e.target.matches(".chip")){$("#vorhaben").value=e.target.textContent;run()}});
+const norm=s=>(s||"").toLowerCase().replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss");
+// Im Export stehen Gedankenstriche und Anführungszeichen als „?“. Hier nur für die Anzeige korrigieren.
+const fixT=s=>(s||"").replace(/(\d)\?(\d)/g,"$1–$2").replace(/ \? /g," – ").replace(/(^|[\s(])\?(?=[A-Za-zÄÖÜäöü])/g,"$1„").replace(/([A-Za-zÄÖÜäöüß.)])\?(?=[\s),.]|$)/g,"$1“").replace(/ ( )+/g," ");
+const fixD=s=>(s||"").replace(/(\d)\?(\d)/g,"$1–$2").replace(/ \? /g," – ");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
-const norm=s=>s.toLowerCase().replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss");
-function match(text,roles,art){
-  const tx=norm(text);
-  return P.map(p=>{
-    const hits=[...new Set(p.k.filter(k=>tx.includes(norm(k))))];
-    let sc=hits.length*25;
-    const rh=p.r.filter(r=>roles.includes(r));
-    if(hits.length&&rh.length) sc+=15;
-    if(hits.length&&!rh.length&&roles.length) sc-=10;
-    return {p,hits,rh,sc:Math.max(0,Math.min(99,sc))};
-  }).filter(m=>m.hits.length&&(!art||m.p.art===art)).sort((a,b)=>b.sc-a.sc);
+function prep(p){
+  const h=H[p.antragshilfe];
+  p._t=fixT(p.titel);
+  const words=s=>" "+norm(s).replace(/[^a-z0-9]+/g," ");
+  p._title=words(p._t);
+  p._kw=words([...(p.stichworte||[]),...(h?h.stichworte:[])].join(" "));
+  p._hilfeKw=h?h.stichworte.map(norm):[];
+  p._body=words([p.kurz,p.beschreibung].join(" "));
+  p._region=(p.gebiet||[]).filter(g=>g!=="_bundesweit");
+  return p;
 }
-const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function tokens(text){
+  return [...new Set(norm(text).split(/[^a-z0-9]+/).filter(w=>w.length>=3&&!STOP.has(w)))].map(w=>w.length>7?w.slice(0,7):w);
+}
+function match(text,art,land){
+  const q=" "+norm(text).replace(/[^a-z0-9]+/g," "), tk=tokens(text);
+  const areas=Object.entries(BEREICH).filter(([,ws])=>ws.some(w=>q.includes(" "+norm(w)))).map(([b])=>b);
+  const res=[];
+  for(const p of P){
+    if(art&&!p.art.includes(art))continue;
+    if(p._region.length&&land&&!p._region.includes(land))continue;
+    let sc=0; const hits=new Set();
+    // Stichwörter der Antragshilfe: längere, genauere Begriffe zählen mehr als kurze
+    for(const k of p._hilfeKw){ if(k.length>2&&q.includes(" "+k.replace(/[^a-z0-9]+/g," "))){sc+=3+Math.min(k.length,12)/2;hits.add(k)} }
+    for(const t of tk){
+      const w=" "+t;
+      if(p._title.includes(w)){sc+=4;hits.add(t)}
+      else if(p._kw.includes(w)){sc+=3;hits.add(t)}
+      else if(t.length>=5&&p._body.includes(w)){sc+=1;hits.add(t)}
+    }
+    if(!sc)continue;
+    if(areas.some(a=>p.bereich.includes(a)))sc+=3;
+    if(p.antragshilfe)sc+=1;
+    if(p._region.length&&!land)sc-=2;
+    res.push({p,sc,hits:[...hits]});
+  }
+  res.sort((a,b)=>b.sc-a.sc||a.p._t.localeCompare(b.p._t,"de"));
+  const top=res[0]?res[0].sc:1;
+  res.forEach(r=>r.pct=Math.max(5,Math.round(99*r.sc/top)));
+  return res.filter(r=>r.sc>=Math.max(3,top*0.2));
+}
 function draft(p,text){
-  return `Kurzbeschreibung des Vorhabens für: ${p.t}\n\nVorhaben: ${text.trim()}\nOrt: [Adresse des Objekts / Wohnort]\nGeplanter Beginn: [Monat/Jahr], erst nach Antragstellung\nGeschätzte Kosten: [Betrag laut Angebot]\nBeteiligte: [Fachbetrieb / Experte / Hochschule]\n\nZiel der Maßnahme: [z. B. Energie sparen, barrierefrei wohnen, Abschluss erreichen]`;
+  return `Kurzbeschreibung des Vorhabens für: ${p._t}\n\nVorhaben: ${text.trim()}\nOrt: [Adresse / Wohnort]\nGeplanter Beginn: [Monat/Jahr], erst nach Antragstellung\nGeschätzte Kosten: [Betrag laut Angebot]\nBeteiligte: [Fachbetrieb / Berater / Hochschule]\n\nZiel der Maßnahme: [z. B. Energie sparen, barrierefrei wohnen, Abschluss erreichen]`;
 }
-function render(list,text){
-  const R=ROLES.reduce((o,[v,l])=>(o[v]=l,o),{});
-  $("#count").textContent=list.length?`${list.length} Treffer`:"";
-  if(!list.length){$("#results").innerHTML=`<div class="empty">Keine Treffer. Beschreibe dein Vorhaben mit konkreten Begriffen, z. B. „Wärmepumpe“, „Studium“ oder „barrierefreies Bad“, oder wähle oben ein Beispiel.</div>`;return}
-  $("#results").innerHTML=list.map(({p,hits,rh,sc})=>{
-    const done=checks[p.id]||[];
-    return `<article class="card"><div class="score"><b>${sc}</b><small>Passung</small></div><div class="body">
-    <h3>${esc(p.t)}</h3>
-    <div class="meta"><span class="tag ${p.art==="Zuschuss"?"zu":""}">${p.art}</span><span class="tag ${p.eb==="EU"?"eu":""}">${p.eb}</span><span class="tag">${esc(p.tr)}</span>${p.st?`<span class="tag alert">${esc(p.st)}</span>`:""}</div>
-    <p>${esc(p.s)}</p>
-    <p class="why">Passt wegen ${hits.map(h=>`<mark>${esc(h)}</mark>`).join(" ")}${rh.length?` · Profil: ${rh.map(r=>R[r]).join(", ")}`:""}</p>
-    <div class="actions"><button class="btn2" type="button" data-help="${p.id}" aria-expanded="false">Antragshilfe</button><a href="${p.u}" target="_blank" rel="noopener">Zum Förderträger ↗</a></div>
-    <div class="help" id="help-${p.id}" hidden>
-      <div><h4>Wo beantragen</h4><p>${esc(p.w)}</p></div>
-      <div class="trap"><strong>Stolperfalle:</strong> ${esc(p.trap)}</div>
-      <div><h4>Schritte (abhaken)</h4><div style="display:grid;gap:.35rem;margin-top:.4rem">${p.steps.map((s,i)=>`<label class="check ${done.includes(i)?"done":""}"><input type="checkbox" id="c-${p.id}-${i}" data-p="${p.id}" data-i="${i}" ${done.includes(i)?"checked":""}><span>${esc(s)}</span></label>`).join("")}</div></div>
-      <div><h4>Unterlagen</h4><ul style="margin-top:.4rem">${p.docs.map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div>
-      <div style="display:grid;gap:.4rem"><h4>Entwurf: Kurzbeschreibung</h4><div class="draft" id="d-${p.id}">${esc(draft(p,text))}</div><div><button class="btn2" type="button" data-copy="${p.id}">Text kopieren</button> <span class="note" id="cm-${p.id}"></span></div></div>
-    </div></div></article>`}).join("");
+const LN=Object.fromEntries(LAENDER);
+function card({p,pct,hits},text){
+  const h=H[p.antragshilfe], done=checks[p.id]||[];
+  const txt=fixD(p.kurz||p.beschreibung||"");
+  const long=!p.kurz&&txt.length>320;
+  const region=p._region.map(r=>LN[r]||r).join(", ");
+  const orig=[["Verfahren",p.verfahren],["Unterlagen",p.unterlagen],["Fristen",p.fristen]].filter(([,v])=>v);
+  return `<article class="card"><div class="score"><b>${pct}</b><small>Passung</small></div><div class="body">
+  <h3>${esc(p._t)}</h3>
+  <div class="meta">${p.art.map(a=>`<span class="tag ${a==="Zuschuss"?"zu":""}">${esc(a)}</span>`).join("")}${p.geber.map(g=>`<span class="tag ${g==="EU"?"eu":""}">${esc(g)}</span>`).join("")}${region?`<span class="tag">${esc(region)}</span>`:""}${h?`<span class="tag hilfe">Antragshilfe</span>`:""}${h&&h.hinweis_status?`<span class="tag alert">${esc(h.hinweis_status)}</span>`:""}</div>
+  ${txt?`<p class="txt ${long?"clamp":""}" id="t-${p.id}">${esc(txt)}</p>${long?`<button class="more" type="button" data-more="${p.id}">Ganzen Text lesen</button>`:""}`:`<p class="note">Die Förderdatenbank hat zu diesem Programm keinen Kurztext. Details stehen auf der Originalseite.</p>`}
+  ${hits.length?`<p class="why">Passt wegen ${hits.filter(x=>!hits.some(y=>y!==x&&y.startsWith(x))).slice(0,6).map(x=>`<mark>${esc(x)}</mark>`).join(" ")}</p>`:""}
+  <div class="actions"><button class="btn2" type="button" data-help="${p.id}" aria-expanded="false">${h?"Antragshilfe":"Antrag: so geht's"}</button><a href="${esc(p.url)}" target="_blank" rel="noopener">Originalseite ↗</a></div>
+  <div class="help" id="help-${p.id}" hidden>
+    ${h?`<div><h4>Wo beantragen</h4><p>${esc(h.antragsweg)}</p></div>
+    ${h.vor_beginn?`<div class="trap"><strong>Antrag vor Beginn:</strong> Erst beantragen, dann Verträge schließen oder anfangen.</div>`:""}
+    <div class="trap"><strong>Stolperfalle:</strong> ${esc(h.stolperfalle)}</div>
+    <div><h4>Schritte zum Abhaken</h4><div class="checks">${h.schritte.map((s,i)=>`<label class="check ${done.includes(i)?"done":""}"><input type="checkbox" id="c-${p.id}-${i}" data-p="${p.id}" data-i="${i}" ${done.includes(i)?"checked":""}><span>${esc(s)}</span></label>`).join("")}</div></div>
+    ${h.unterlagen.length?`<div><h4>Unterlagen</h4><ul>${h.unterlagen.map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div>`:""}`
+    :`<p class="note">Für dieses Programm gibt es noch keine eigene Schritt-für-Schritt-Hilfe. Unten steht, was die Förderdatenbank zum Verfahren sagt.</p>`}
+    ${orig.length?`<div class="orig"><span class="lbl">Aus der Förderdatenbank, unverändert</span>${orig.map(([k,v])=>`<div><h4>${k}</h4><p class="txt">${esc(fixD(v))}</p></div>`).join("")}</div>`:""}
+    <div style="display:grid;gap:.4rem"><h4>Entwurf: Kurzbeschreibung deines Vorhabens</h4><div class="draft" id="d-${p.id}">${esc(draft(p,text))}</div><div><button class="btn2" type="button" data-copy="${p.id}">Text kopieren</button> <span class="note" id="cm-${p.id}"></span></div></div>
+    ${p.lizenz?`<p class="src">${esc(fixT(p.lizenz))}</p>`:""}
+  </div></div></article>`;
+}
+function render(more){
+  const start=more?shown:0, n=Math.min(start+10,last.length);
+  if(!more)$("#results").innerHTML="";
+  $("#results").insertAdjacentHTML("beforeend",last.slice(start,n).map(r=>card(r,lastText)).join(""));
+  shown=n;
+  $("#count").textContent=last.length?`${last.length} Treffer`:"";
+  $("#mehr").hidden=shown>=last.length;
+  if(!last.length)$("#results").innerHTML=`<div class="empty">Keine Treffer. Beschreibe dein Vorhaben mit konkreten Begriffen, etwa „Wärmepumpe“, „Studium“ oder „barrierefreies Bad“, oder wähle oben ein Beispiel.</div>`;
 }
 function run(){
-  const text=$("#vorhaben").value;
-  const roles=[...document.querySelectorAll("#roles input:checked")].map(i=>i.value);
-  render(match(text,roles,$("#art").value),text);
+  lastText=$("#vorhaben").value;
+  store.set("fl-land",$("#land").value);
+  last=match(lastText,$("#art").value,$("#land").value); shown=0; render(false);
 }
+
+$("#chips").innerHTML=CHIPS.map(c=>`<button type="button" class="chip">${c}</button>`).join("");
+$("#land").innerHTML=LAENDER.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
+$("#land").value=store.get("fl-land","");
+$("#chips").addEventListener("click",e=>{if(e.target.matches(".chip")){$("#vorhaben").value=e.target.textContent;run()}});
 $("#form").addEventListener("submit",e=>{e.preventDefault();run()});
+$("#mehr").addEventListener("click",()=>render(true));
 $("#results").addEventListener("click",e=>{
+  const m=e.target.closest("[data-more]");
+  if(m){const t=$("#t-"+m.dataset.more);t.classList.toggle("clamp");m.textContent=t.classList.contains("clamp")?"Ganzen Text lesen":"Weniger anzeigen";return}
   const h=e.target.closest("[data-help]");
-  if(h){const el=$("#help-"+h.dataset.help);el.hidden=!el.hidden;h.setAttribute("aria-expanded",String(!el.hidden));h.textContent=el.hidden?"Antragshilfe":"Antragshilfe schließen";return}
+  if(h){const el=$("#help-"+h.dataset.help);el.hidden=!el.hidden;h.setAttribute("aria-expanded",String(!el.hidden));return}
   const c=e.target.closest("[data-copy]");
-  if(c){const id=c.dataset.copy,t=$("#d-"+id).textContent,m=$("#cm-"+id);
-    navigator.clipboard.writeText(t).then(()=>m.textContent="Kopiert").catch(()=>{const r=document.createRange();r.selectNodeContents($("#d-"+id));const s=getSelection();s.removeAllRanges();s.addRange(r);m.textContent="Markiert, jetzt kopieren"})}
+  if(c){const id=c.dataset.copy,box=$("#d-"+id),msg=$("#cm-"+id);
+    const sel=()=>{const r=document.createRange();r.selectNodeContents(box);const s=getSelection();s.removeAllRanges();s.addRange(r);msg.textContent="Markiert, jetzt kopieren"};
+    try{navigator.clipboard.writeText(box.textContent).then(()=>msg.textContent="Kopiert").catch(sel)}catch(err){sel()}}
 });
 $("#results").addEventListener("change",e=>{
   const i=e.target;if(!i.dataset.p)return;
   const a=new Set(checks[i.dataset.p]||[]);i.checked?a.add(+i.dataset.i):a.delete(+i.dataset.i);
   checks[i.dataset.p]=[...a];store.set("fl-checks",checks);i.closest(".check").classList.toggle("done",i.checked);
 });
-run();
+
+Promise.all(["data/programme.json","data/antragshilfe.json","data/meta.json"].map(u=>fetch(u).then(r=>{if(!r.ok)throw new Error(u);return r.json()})))
+.then(([prog,hilfe,meta])=>{
+  H=Object.fromEntries(hilfe.map(h=>[h.id,h]));
+  P=prog.map(prep);
+  const d=new Date(meta.stand+"T00:00:00");
+  $("#stand").textContent=`${P.length} Programme · Stand ${d.toLocaleDateString("de-DE")}`;
+  run();
+})
+.catch(()=>{$("#stand").textContent="Offline";$("#results").innerHTML=`<div class="empty">Die Programmdaten konnten nicht geladen werden. Prüfe deine Internetverbindung und lade die Seite neu.</div>`});
+
+if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}
 </script>
+</body>
+</html>
