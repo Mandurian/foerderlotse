@@ -1,0 +1,366 @@
+[
+  {
+    "id": "kfw458",
+    "titel_enthaelt": [
+      "(458)",
+      "Heizungsförderung für Privatpersonen"
+    ],
+    "antragsweg": "Online im KfW-Kundenportal „Meine KfW“",
+    "schritte": [
+      "Angebot eines Fachbetriebs einholen",
+      "Liefer- oder Leistungsvertrag mit auflösender oder aufschiebender Bedingung abschließen (gilt nur, wenn die Förderung zugesagt wird)",
+      "Bestätigung zum Antrag (BzA) vom Fachbetrieb oder Energieeffizienz-Experten erstellen lassen",
+      "Zuschuss in „Meine KfW“ beantragen, erst danach mit dem Einbau beginnen",
+      "Nach Abschluss: Rechnungen und Bestätigung nach Durchführung hochladen"
+    ],
+    "unterlagen": [
+      "Angebot / Vertrag mit Förderbedingung",
+      "Bestätigung zum Antrag (BzA)",
+      "bei Einkommensbonus: Einkommensnachweis"
+    ],
+    "stolperfalle": "Der Antrag muss vor Beginn der Arbeiten gestellt sein. Ein Vertrag ohne Förderbedingung kann den Zuschuss kosten.",
+    "vor_beginn": true,
+    "hinweis_status": "Regeln können sich mit der Reform des Gebäudeenergiegesetzes ändern"
+  },
+  {
+    "id": "bafaem",
+    "titel_enthaelt": [
+      "Einzelmaßnahmen"
+    ],
+    "antragsweg": "Online-Antrag im BAFA-Portal",
+    "schritte": [
+      "Energieeffizienz-Experten (Liste: energie-effizienz-experten.de) beauftragen",
+      "Technische Projektbeschreibung (TPB) erstellen lassen",
+      "Vertrag mit Förderbedingung abschließen",
+      "Antrag beim BAFA stellen, Eingangsbestätigung abwarten",
+      "Maßnahme umsetzen, dann Verwendungsnachweis einreichen"
+    ],
+    "unterlagen": [
+      "Technische Projektbeschreibung (TPB)",
+      "Angebot / Vertrag",
+      "ggf. iSFP für den Bonus"
+    ],
+    "stolperfalle": "Für Dämmung und Fenster ist meist ein Energieeffizienz-Experte Pflicht. Dessen Kosten sind teilweise förderfähig.",
+    "vor_beginn": true,
+    "hinweis_status": "Fördersätze vor Antrag prüfen"
+  },
+  {
+    "id": "kfw261",
+    "titel_enthaelt": [
+      "(261)"
+    ],
+    "antragsweg": "Über deine Hausbank oder einen Finanzierungspartner",
+    "schritte": [
+      "Energieeffizienz-Experten einbinden, Zielstandard festlegen",
+      "Bestätigung zum Antrag erstellen lassen",
+      "Kredit über die Hausbank beantragen, vor Vorhabenbeginn",
+      "Sanierung durchführen, Bestätigung nach Durchführung einreichen"
+    ],
+    "unterlagen": [
+      "Bestätigung zum Antrag",
+      "Finanzierungsunterlagen für die Bank (Einkommen, Grundbuch)"
+    ],
+    "stolperfalle": "Die Bank muss den Antrag bei der KfW gestellt haben, bevor Aufträge vergeben werden.",
+    "vor_beginn": true,
+    "hinweis_status": null
+  },
+  {
+    "id": "kfw270",
+    "titel_enthaelt": [
+      "(270)",
+      "Erneuerbare Energien – Standard",
+      "Erneuerbare Energien - Standard"
+    ],
+    "antragsweg": "Über deine Hausbank",
+    "schritte": [
+      "Angebote für die Anlage vergleichen",
+      "Mit der Hausbank Kredit besprechen, Antrag vor Vorhabenbeginn",
+      "Anlage installieren lassen, beim Marktstammdatenregister anmelden"
+    ],
+    "unterlagen": [
+      "Angebot / Kostenvoranschlag",
+      "Einkommensnachweise für die Bank"
+    ],
+    "stolperfalle": "Ein reiner Kredit, kein Zuschuss. Rechne aus, ob er günstiger ist als die Finanzierung aus eigenen Mitteln.",
+    "vor_beginn": true,
+    "hinweis_status": null
+  },
+  {
+    "id": "kfw159",
+    "titel_enthaelt": [
+      "(159)",
+      "Altersgerecht Umbauen – Kredit",
+      "Altersgerecht Umbauen - Kredit"
+    ],
+    "antragsweg": "Über deine Hausbank",
+    "schritte": [
+      "Maßnahmen und technische Mindestanforderungen klären",
+      "Als Mieter:in: Zustimmung der Vermietung einholen",
+      "Kredit über die Hausbank vor Beginn beantragen"
+    ],
+    "unterlagen": [
+      "Kostenaufstellung",
+      "ggf. Zustimmung der Vermietung"
+    ],
+    "stolperfalle": "Prüfe zusätzlich die Pflegekasse: Bei einem Pflegegrad gibt es für wohnumfeldverbessernde Maßnahmen einen eigenen Zuschuss.",
+    "vor_beginn": true,
+    "hinweis_status": null
+  },
+  {
+    "id": "kfw455b",
+    "titel_enthaelt": [
+      "455-B",
+      "Barrierereduzierung"
+    ],
+    "antragsweg": "Online im KfW-Zuschussportal",
+    "schritte": [
+      "Verfügbarkeit der Mittel auf der KfW-Seite prüfen",
+      "Zuschuss online beantragen, vor Beginn",
+      "Nach Umbau Rechnungen hochladen"
+    ],
+    "unterlagen": [
+      "Kostenvoranschläge",
+      "Rechnungen nach Abschluss"
+    ],
+    "stolperfalle": "Bei ausgeschöpften Mitteln sofort auf den Kredit 159 oder Landesprogramme ausweichen.",
+    "vor_beginn": true,
+    "hinweis_status": "Mittel sind oft für das Jahr ausgeschöpft"
+  },
+  {
+    "id": "kfw300",
+    "titel_enthaelt": [
+      "(300)",
+      "Wohneigentum für Familien"
+    ],
+    "antragsweg": "Über deine Hausbank",
+    "schritte": [
+      "Einkommensgrenze anhand der Steuerbescheide prüfen",
+      "Nachweis des Effizienzstandards einplanen",
+      "Kredit über die Hausbank vor Kaufvertrag bzw. Baubeginn beantragen"
+    ],
+    "unterlagen": [
+      "Einkommensteuerbescheide",
+      "Nachweise zu den Kindern",
+      "Bau- oder Kaufunterlagen"
+    ],
+    "stolperfalle": "Gilt nur für Familien, die noch kein Wohneigentum haben.",
+    "vor_beginn": true,
+    "hinweis_status": "Einkommensgrenzen vor Antrag prüfen"
+  },
+  {
+    "id": "kfw308",
+    "titel_enthaelt": [
+      "(308)",
+      "Jung kauft Alt"
+    ],
+    "antragsweg": "Über deine Hausbank",
+    "schritte": [
+      "Energieausweis des Hauses prüfen (schlechte Effizienzklasse ist Voraussetzung)",
+      "Sanierungspflicht und -frist einplanen",
+      "Kredit vor Unterschrift des Kaufvertrags beantragen"
+    ],
+    "unterlagen": [
+      "Energieausweis",
+      "Einkommensteuerbescheide",
+      "Kaufvertragsentwurf"
+    ],
+    "stolperfalle": "Mit dem Kredit übernimmst du die Pflicht, das Haus innerhalb einer Frist zu sanieren.",
+    "vor_beginn": true,
+    "hinweis_status": "Einkommensgrenzen vor Antrag prüfen"
+  },
+  {
+    "id": "kfw124",
+    "titel_enthaelt": [
+      "(124)",
+      "Wohneigentumsprogramm"
+    ],
+    "antragsweg": "Über deine Hausbank",
+    "schritte": [
+      "Gesamtfinanzierung mit der Bank planen",
+      "Kredit vor Kaufvertrag bzw. Baubeginn beantragen"
+    ],
+    "unterlagen": [
+      "Übliche Finanzierungsunterlagen"
+    ],
+    "stolperfalle": "Der Zinsvorteil ist je nach Marktlage klein. Mit dem Bankangebot vergleichen.",
+    "vor_beginn": true,
+    "hinweis_status": null
+  },
+  {
+    "id": "wop",
+    "titel_enthaelt": [
+      "Wohnungsbauprämie"
+    ],
+    "antragsweg": "Über die Bausparkasse, jährlich",
+    "schritte": [
+      "Bausparvertrag abschließen",
+      "Jährlich den Antrag auf Wohnungsbauprämie bei der Bausparkasse einreichen"
+    ],
+    "unterlagen": [
+      "Antragsformular der Bausparkasse"
+    ],
+    "stolperfalle": "Den Antrag nicht vergessen: Er muss jedes Jahr gestellt werden.",
+    "vor_beginn": false,
+    "hinweis_status": "Einkommensgrenzen prüfen"
+  },
+  {
+    "id": "bafoeg",
+    "titel_enthaelt": [
+      "BAföG (Bundesausbildungsförderung)",
+      "Bundesausbildungsförderung"
+    ],
+    "antragsweg": "Online über „BAföG Digital“",
+    "schritte": [
+      "Mit dem BAföG-Rechner grob prüfen",
+      "Antrag bei BAföG Digital stellen, möglichst vor Semesterbeginn",
+      "Einkommensnachweise der Eltern nachreichen lassen"
+    ],
+    "unterlagen": [
+      "Immatrikulationsbescheinigung",
+      "Einkommensnachweise der Eltern",
+      "Kontoauszüge zum eigenen Vermögen"
+    ],
+    "stolperfalle": "BAföG gibt es frühestens ab dem Monat, in dem der Antrag eingeht. Lieber unvollständig früh einreichen.",
+    "vor_beginn": false,
+    "hinweis_status": null
+  },
+  {
+    "id": "afbg",
+    "titel_enthaelt": [
+      "Aufstiegs-BAföG",
+      "Aufstiegsfortbildungsförderung"
+    ],
+    "antragsweg": "Bei der zuständigen Stelle des Bundeslandes",
+    "schritte": [
+      "Lehrgang wählen und Anmeldung bestätigen lassen",
+      "Antrag bei der Landesstelle stellen",
+      "Bewilligten Darlehensteil bei der KfW abrufen"
+    ],
+    "unterlagen": [
+      "Anmeldebestätigung des Lehrgangs",
+      "Nachweis der Vorqualifikation"
+    ],
+    "stolperfalle": "Den Antrag spätestens bis zum Ende des Lehrgangs stellen, sonst verfällt der Anspruch für bereits abgelaufene Zeit.",
+    "vor_beginn": false,
+    "hinweis_status": null
+  },
+  {
+    "id": "bildungsgutschein",
+    "titel_enthaelt": [
+      "Bildungsgutschein",
+      "Förderung der beruflichen Weiterbildung"
+    ],
+    "antragsweg": "Im Gespräch mit der Vermittlung",
+    "schritte": [
+      "Passenden zertifizierten Kurs suchen (AZAV)",
+      "Termin bei der Vermittlung, Bedarf begründen",
+      "Gutschein vor Kursbeginn beim Bildungsträger einlösen"
+    ],
+    "unterlagen": [
+      "Kursangebot mit AZAV-Zulassung",
+      "Lebenslauf, Stellenanzeigen als Begründung"
+    ],
+    "stolperfalle": "Ohne Gutschein vor Kursbeginn gibt es keine Erstattung.",
+    "vor_beginn": true,
+    "hinweis_status": "Ermessensleistung"
+  },
+  {
+    "id": "gruendungszuschuss",
+    "titel_enthaelt": [
+      "Gründungszuschuss"
+    ],
+    "antragsweg": "Bei deiner Arbeitsagentur",
+    "schritte": [
+      "Noch ausreichend Restanspruch auf ALG I sicherstellen",
+      "Businessplan schreiben",
+      "Tragfähigkeit von fachkundiger Stelle (z. B. IHK) bestätigen lassen",
+      "Antrag vor Aufnahme der Selbstständigkeit stellen"
+    ],
+    "unterlagen": [
+      "Businessplan",
+      "Tragfähigkeitsbescheinigung",
+      "Lebenslauf"
+    ],
+    "stolperfalle": "Die Selbstständigkeit erst nach dem Antrag anmelden.",
+    "vor_beginn": true,
+    "hinweis_status": "Ermessensleistung"
+  },
+  {
+    "id": "kfw067",
+    "titel_enthaelt": [
+      "StartGeld",
+      "(067)"
+    ],
+    "antragsweg": "Über deine Hausbank",
+    "schritte": [
+      "Businessplan und Finanzplan erstellen",
+      "Gründungsberatung nutzen (oft selbst gefördert)",
+      "Kredit über die Hausbank beantragen"
+    ],
+    "unterlagen": [
+      "Businessplan",
+      "Finanz- und Liquiditätsplan"
+    ],
+    "stolperfalle": "Banken lehnen kleine Gründungskredite oft ab. Mehrere Banken ansprechen.",
+    "vor_beginn": false,
+    "hinweis_status": null
+  },
+  {
+    "id": "erasmus",
+    "titel_enthaelt": [
+      "Erasmus+"
+    ],
+    "antragsweg": "Über das International Office deiner Hochschule",
+    "schritte": [
+      "Fristen des International Office erfragen",
+      "Bewerbung mit Motivationsschreiben",
+      "Learning Agreement abschließen",
+      "Grant Agreement unterschreiben"
+    ],
+    "unterlagen": [
+      "Motivationsschreiben",
+      "Notenübersicht",
+      "Learning Agreement"
+    ],
+    "stolperfalle": "Hochschulinterne Fristen liegen oft fast ein Jahr vor dem Auslandsaufenthalt.",
+    "vor_beginn": false,
+    "hinweis_status": null
+  },
+  {
+    "id": "discovereu",
+    "titel_enthaelt": [
+      "DiscoverEU"
+    ],
+    "antragsweg": "Online im Europäischen Jugendportal",
+    "schritte": [
+      "Bewerbungsrunde abwarten",
+      "Quiz und Formular ausfüllen",
+      "Bei Zusage Reisezeitraum wählen"
+    ],
+    "unterlagen": [
+      "Ausweisdaten"
+    ],
+    "stolperfalle": "Nur wer im jeweiligen Jahrgang geboren ist, darf mitmachen.",
+    "vor_beginn": false,
+    "hinweis_status": "Nur in Bewerbungsrunden"
+  },
+  {
+    "id": "esc",
+    "titel_enthaelt": [
+      "Solidaritätskorps"
+    ],
+    "antragsweg": "Online im Europäischen Jugendportal",
+    "schritte": [
+      "Profil im Jugendportal anlegen",
+      "Auf Projekte bewerben",
+      "Vorbereitungsseminar besuchen"
+    ],
+    "unterlagen": [
+      "Lebenslauf",
+      "Motivationsschreiben"
+    ],
+    "stolperfalle": "Projekte suchen sich die Teilnehmenden aus. Mehrere Bewerbungen erhöhen die Chance.",
+    "vor_beginn": false,
+    "hinweis_status": null
+  }
+]
