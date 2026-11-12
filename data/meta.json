@@ -1,11 +1,11 @@
 {
-  "stand": "2026-11-11",
+  "stand": "2026-11-12",
   "anzahl": 89,
   "aus_foerderdatenbank": 87,
   "eigene_eintraege": 2,
   "mit_antragshilfe": 38,
+  "mit_kurzbeschreibung": 89,
   "zeilen_im_export": 2572,
   "quelle": "https://fdb.cdl.correlaid.org/id/dataset/foerderdatenbank-programme",
-  "lizenz": "CC BY-ND 4.0 (Förderdatenbank-Daten über CorrelAid / Civic Data Lab)",
-  "mit_kurzbeschreibung": 89
+  "lizenz": "CC BY-ND 4.0 (Förderdatenbank-Daten über CorrelAid / Civic Data Lab)"
 }
