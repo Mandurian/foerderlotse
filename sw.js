@@ -1,5 +1,5 @@
 // Förderlotse Service Worker: App-Hülle offline, Daten zuerst frisch aus dem Netz.
-const CACHE = "foerderlotse-v2";
+const CACHE = "foerderlotse-v3";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "icons/icon.svg", "icons/icon-192.png", "icons/icon-512.png",
                "data/programme.json", "data/antragshilfe.json", "data/meta.json"];
 

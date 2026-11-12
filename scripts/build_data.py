@@ -123,6 +123,15 @@ def verknuepfe_antragshilfe(programme, hilfe):
                 break
 
 
+def kurzbeschreibungen(programme, texte):
+    """Eigene Kurzbeschreibung des Förderlotsen anhängen (längster passender URL-Teil gewinnt)."""
+    for p in programme:
+        url = p["url"].lower()
+        treffer = [k for k in texte if not k.startswith("_") and k.lower() in url]
+        if treffer:
+            p["kurz_eigen"] = texte[max(treffer, key=len)]
+
+
 def schluessel(titel):
     return re.sub(r"[^a-z0-9äöüß]+", "", titel.lower())
 
@@ -157,6 +166,9 @@ def main():
 
     hilfe = json.loads((DATA / "antragshilfe.json").read_text(encoding="utf-8"))
     verknuepfe_antragshilfe(programme, hilfe)
+    kb = DATA / "kurzbeschreibungen.json"
+    if kb.exists():
+        kurzbeschreibungen(programme, json.loads(kb.read_text(encoding="utf-8")))
     programme.sort(key=lambda p: p["titel"].lower())
 
     ausgabe = json.dumps(programme, ensure_ascii=False, separators=(",", ":"))
@@ -167,6 +179,7 @@ def main():
         "aus_foerderdatenbank": len(programme) - len(eigene),
         "eigene_eintraege": len(eigene),
         "mit_antragshilfe": sum(1 for p in programme if "antragshilfe" in p),
+        "mit_kurzbeschreibung": sum(1 for p in programme if "kurz_eigen" in p),
         "zeilen_im_export": len(zeilen),
         "quelle": QUELLE_INFO,
         "lizenz": "CC BY-ND 4.0 (Förderdatenbank-Daten über CorrelAid / Civic Data Lab)",
@@ -175,7 +188,7 @@ def main():
 
     groesse = len(ausgabe.encode("utf-8"))
     print(f"{meta['anzahl']} Programme geschrieben ({groesse/1e6:.2f} MB), "
-          f"davon {meta['mit_antragshilfe']} mit Antragshilfe. Export hatte {len(zeilen)} Zeilen.")
+          f"davon {meta['mit_antragshilfe']} mit Antragshilfe und {meta['mit_kurzbeschreibung']} mit Kurzbeschreibung. Export hatte {len(zeilen)} Zeilen.")
     if groesse > MAX_BYTES:
         print(f"Warnung: programme.json ist größer als {MAX_BYTES/1e6:.0f} MB.", file=sys.stderr)
 

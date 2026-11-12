@@ -12,6 +12,7 @@ Findet für Privatpersonen passende Förderprogramme von Bund und EU und hilft b
 | `.github/workflows/daten.yml` | Startet das Skript jeden Montag automatisch |
 | `data/eu-privat.json` | Von Hand gepflegte EU-Programme für Privatpersonen |
 | `data/antragshilfe.json` | Eigene Antragshilfe: Schritte, Unterlagen, Stolperfallen |
+| `data/kurzbeschreibungen.json` | Eigene Kurzbeschreibungen je Programm, Schlüssel = Teil der Programm-URL |
 | `data/programme.json` | Ergebnis: alle passenden Programme (wird erzeugt) |
 | `data/meta.json` | Stand, Anzahl, Quelle (wird erzeugt) |
 

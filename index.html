@@ -73,7 +73,7 @@ textarea:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible
 .tag.hilfe{border-color:var(--petrol);color:var(--petrol)}
 .card p{margin:0}
 .txt{white-space:pre-line;overflow-wrap:anywhere}
-.clamp{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.orig-txt{font-size:.93rem;color:var(--muted);border-left:2px solid var(--line);padding-left:.7rem}
 .more{font:inherit;font-size:.88rem;background:none;border:0;padding:0;color:var(--petrol);cursor:pointer;justify-self:start}
 .why{font-size:.88rem;color:var(--muted)}
 .why mark{background:var(--sun-soft);color:var(--ink);padding:0 .2rem;border-radius:2px}
@@ -136,13 +136,13 @@ footer p{margin:0}
 
   <footer>
     <p><strong>Keine Rechtsberatung.</strong> Konditionen, Fördersätze und Budgets ändern sich oft. Verbindlich ist immer die Seite des Förderträgers. Prüfe sie vor jedem Antrag.</p>
-    <p id="quelle">Programmdaten: Förderdatenbank des Bundes, aufbereitet von <a href="https://fdb.cdl.correlaid.org/id/dataset/foerderdatenbank-programme" target="_blank" rel="noopener">CorrelAid / Civic Data Lab</a>, Lizenz <a href="https://creativecommons.org/licenses/by-nd/4.0/deed.de" target="_blank" rel="noopener">CC BY-ND 4.0</a>. Programmtexte werden unverändert angezeigt. Antragshilfe: eigene Texte des Förderlotsen.</p>
+    <p id="quelle">Programmdaten: Förderdatenbank des Bundes, aufbereitet von <a href="https://fdb.cdl.correlaid.org/id/dataset/foerderdatenbank-programme" target="_blank" rel="noopener">CorrelAid / Civic Data Lab</a>, Lizenz <a href="https://creativecommons.org/licenses/by-nd/4.0/deed.de" target="_blank" rel="noopener">CC BY-ND 4.0</a>. Originaltexte werden unverändert angezeigt. Kurzbeschreibungen und Antragshilfe sind eigene Texte des Förderlotsen.</p>
   </footer>
 </div>
 
 <script>
 const CHIPS=["Wärmepumpe einbauen","Haus kaufen als Familie","Bad barrierefrei umbauen","Photovoltaik aufs Dach","Elektroauto leasen","Studium finanzieren","Meisterkurs machen","Auslandssemester","Weiterbildung, bin arbeitslos","Album aufnehmen mit meiner Band","Lärm von der Bahnstrecke"];
-const LAENDER=[["","Alle Bundesländer"],["baden_wuerttemberg","Baden-Württemberg"],["bayern","Bayern"],["berlin","Berlin"],["brandenburg","Brandenburg"],["bremen","Bremen"],["hamburg","Hamburg"],["hessen","Hessen"],["mecklenburg_vorpommern","Mecklenburg-Vorpommern"],["niedersachsen","Niedersachsen"],["nordrhein_westfalen","Nordrhein-Westfalen"],["rheinland_pfalz","Rheinland-Pfalz"],["saarland","Saarland"],["sachsen","Sachsen"],["sachsen_anhalt","Sachsen-Anhalt"],["schleswig_holstein","Schleswig-Holstein"],["thueringen","Thüringen"]];
+const LAENDER=[["","Alle Bundesländer"],["baden_wuerttemberg","Baden-Württemberg"],["bayern","Bayern"],["berlin","Berlin"],["brandenburg","Brandenburg"],["bremen","Bremen"],["hamburg","Hamburg"],["hessen","Hessen"],["mecklenburg_vorpommern","Mecklenburg-Vorpommern"],["de_ni","Niedersachsen"],["nordrhein_westfalen","Nordrhein-Westfalen"],["rheinland_pfalz","Rheinland-Pfalz"],["saarland","Saarland"],["sachsen","Sachsen"],["de_st","Sachsen-Anhalt"],["schlesig_holstein","Schleswig-Holstein"],["thueringen","Thüringen"]];
 // Wörter aus dem Alltag → Förderbereiche der Förderdatenbank
 const BEREICH={wohnungsbau_modernisierung:["haus","wohnung","bauen","kaufen","sanier","modernis","umbau","eigentum","miete","dach","bad"],energieeffizienz_erneuerbare_energien:["heiz","wärme","energie","solar","photovolt","dämm","strom","fenster"],aus_weiterbildung:["studi","ausbild","weiterbild","schule","kurs","meister","lehrgang","stipend","umschul","semester"],mobilitaet:["auto","fahrzeug","laden","wallbox","fahrrad","bahn"],kultur_medien_sport:["musik","band","film","kunst","kultur","album","sport","kino"],gesundheit_soziales:["gesund","pflege","kind","familie","behind"],arbeit:["arbeit","job","arbeitslos","beruf","entlass"],umwelt_naturschutz:["umwelt","natur","moor","klima","lärm"],existenzgruendung_festigung:["gründ","selbststä","startup","firma"],landwirtschaft_laendliche_entwicklung:["dorf","land","hof","bauer"]};
 const STOP=new Set("und oder der die das den dem des ein eine einen einem einer ich wir mein meine meinen unser unsere unseren mit für fuer auf aus von vom zum zur bei nach über ueber wie was will möchte moechte würde gerne mich mir uns ist sind bin hat haben neue neuen alte alten durch auch noch nicht kein keine sowie dass weil wenn".split(" "));
@@ -164,7 +164,7 @@ function prep(p){
   p._title=words(p._t);
   p._kw=words([...(p.stichworte||[]),...(h?h.stichworte:[])].join(" "));
   p._hilfeKw=h?h.stichworte.map(norm):[];
-  p._body=words([p.kurz,p.beschreibung].join(" "));
+  p._body=words([p.kurz_eigen,p.kurz,p.beschreibung].join(" "));
   p._region=(p.gebiet||[]).filter(g=>g!=="_bundesweit");
   return p;
 }
@@ -190,10 +190,13 @@ function match(text,art,land){
     if(!sc)continue;
     if(areas.some(a=>p.bereich.includes(a)))sc+=3;
     if(p.antragshilfe)sc+=1;
-    if(p._region.length&&!land)sc-=2;
+    if(p._region.length&&!land)sc-=1;
     res.push({p,sc,hits:[...hits]});
   }
   res.sort((a,b)=>b.sc-a.sc||a.p._t.localeCompare(b.p._t,"de"));
+  // Ohne gewähltes Bundesland: gleiche Landesprogramme nur einmal zeigen
+  if(!land){const seen={};for(let i=res.length-1;i>=0;i--){const r=res[i];if(!r.p._region.length)continue;const k=r.p._t;if(seen[k]){seen[k].n++;res.splice(i,1)}else{seen[k]=r;r.n=1}}
+    for(const r of res)if(r.n>1)r.laender=r.n}
   const top=res[0]?res[0].sc:1;
   res.forEach(r=>r.pct=Math.max(5,Math.round(99*r.sc/top)));
   return res.filter(r=>r.sc>=Math.max(3,top*0.2));
@@ -202,16 +205,17 @@ function draft(p,text){
   return `Kurzbeschreibung des Vorhabens für: ${p._t}\n\nVorhaben: ${text.trim()}\nOrt: [Adresse / Wohnort]\nGeplanter Beginn: [Monat/Jahr], erst nach Antragstellung\nGeschätzte Kosten: [Betrag laut Angebot]\nBeteiligte: [Fachbetrieb / Berater / Hochschule]\n\nZiel der Maßnahme: [z. B. Energie sparen, barrierefrei wohnen, Abschluss erreichen]`;
 }
 const LN=Object.fromEntries(LAENDER);
-function card({p,pct,hits},text){
+function card({p,pct,hits,laender},text){
   const h=H[p.antragshilfe], done=checks[p.id]||[];
   const txt=fixD(p.kurz||p.beschreibung||"");
-  const long=!p.kurz&&txt.length>320;
-  const region=p._region.map(r=>LN[r]||r).join(", ");
+  const region=laender?`${laender} Bundesländer – wähle deins`:p._region.map(r=>LN[r]||r).join(", ");
   const orig=[["Verfahren",p.verfahren],["Unterlagen",p.unterlagen],["Fristen",p.fristen]].filter(([,v])=>v);
   return `<article class="card"><div class="score"><b>${pct}</b><small>Passung</small></div><div class="body">
   <h3>${esc(p._t)}</h3>
   <div class="meta">${p.art.map(a=>`<span class="tag ${a==="Zuschuss"?"zu":""}">${esc(a)}</span>`).join("")}${p.geber.map(g=>`<span class="tag ${g==="EU"?"eu":""}">${esc(g)}</span>`).join("")}${region?`<span class="tag">${esc(region)}</span>`:""}${h?`<span class="tag hilfe">Antragshilfe</span>`:""}${h&&h.hinweis_status?`<span class="tag alert">${esc(h.hinweis_status)}</span>`:""}</div>
-  ${txt?`<p class="txt ${long?"clamp":""}" id="t-${p.id}">${esc(txt)}</p>${long?`<button class="more" type="button" data-more="${p.id}">Ganzen Text lesen</button>`:""}`:`<p class="note">Die Förderdatenbank hat zu diesem Programm keinen Kurztext. Details stehen auf der Originalseite.</p>`}
+  ${p.kurz_eigen?`<p>${esc(p.kurz_eigen)}</p>`:""}
+  ${txt?`<button class="more" type="button" data-more="${p.id}" aria-expanded="false">Originaltext der Förderdatenbank</button><p class="txt orig-txt" id="t-${p.id}" hidden>${esc(txt)}</p>`:""}
+  ${!p.kurz_eigen&&!txt?`<p class="note">Zu diesem Programm gibt es noch keine Beschreibung. Details stehen auf der Originalseite.</p>`:""}
   ${hits.length?`<p class="why">Passt wegen ${hits.filter(x=>!hits.some(y=>y!==x&&y.startsWith(x))).slice(0,6).map(x=>`<mark>${esc(x)}</mark>`).join(" ")}</p>`:""}
   <div class="actions"><button class="btn2" type="button" data-help="${p.id}" aria-expanded="false">${h?"Antragshilfe":"Antrag: so geht's"}</button><a href="${esc(p.url)}" target="_blank" rel="noopener">Originalseite ↗</a></div>
   <div class="help" id="help-${p.id}" hidden>
@@ -249,7 +253,7 @@ $("#form").addEventListener("submit",e=>{e.preventDefault();run()});
 $("#mehr").addEventListener("click",()=>render(true));
 $("#results").addEventListener("click",e=>{
   const m=e.target.closest("[data-more]");
-  if(m){const t=$("#t-"+m.dataset.more);t.classList.toggle("clamp");m.textContent=t.classList.contains("clamp")?"Ganzen Text lesen":"Weniger anzeigen";return}
+  if(m){const t=$("#t-"+m.dataset.more);t.hidden=!t.hidden;m.setAttribute("aria-expanded",String(!t.hidden));m.textContent=t.hidden?"Originaltext der Förderdatenbank":"Originaltext ausblenden";return}
   const h=e.target.closest("[data-help]");
   if(h){const el=$("#help-"+h.dataset.help);el.hidden=!el.hidden;h.setAttribute("aria-expanded",String(!el.hidden));return}
   const c=e.target.closest("[data-copy]");
