@@ -132,6 +132,27 @@ def kurzbeschreibungen(programme, texte):
             p["kurz_eigen"] = texte[max(treffer, key=len)]
 
 
+def programmstatus(programme, status):
+    """Hinweis anhängen, wenn bei einem Programm derzeit keine Anträge möglich sind."""
+    for p in programme:
+        url = p["url"].lower()
+        treffer = [k for k in status if not k.startswith("_") and k.lower() in url]
+        if treffer:
+            p["status"] = status[max(treffer, key=len)]
+
+
+def doppelte_entfernen(programme):
+    """Gleicher Titel im gleichen Gebiet nur einmal (z. B. zwei Einträge Denkmalschutz Rheinland-Pfalz)."""
+    gesehen, rest = set(), []
+    for p in programme:
+        k = (schluessel(p["titel"]), tuple(sorted(p.get("gebiet") or [])))
+        if k in gesehen:
+            continue
+        gesehen.add(k)
+        rest.append(p)
+    return rest
+
+
 def schluessel(titel):
     return re.sub(r"[^a-z0-9äöüß]+", "", titel.lower())
 
@@ -163,9 +184,13 @@ def main():
         e.setdefault("beschreibung", "")
     eigene = ohne_dubletten(eigene, programme)
     programme += eigene
+    programme = doppelte_entfernen(programme)
 
     hilfe = json.loads((DATA / "antragshilfe.json").read_text(encoding="utf-8"))
     verknuepfe_antragshilfe(programme, hilfe)
+    ps = DATA / "programmstatus.json"
+    if ps.exists():
+        programmstatus(programme, json.loads(ps.read_text(encoding="utf-8")))
     kb = DATA / "kurzbeschreibungen.json"
     if kb.exists():
         kurzbeschreibungen(programme, json.loads(kb.read_text(encoding="utf-8")))
@@ -180,6 +205,7 @@ def main():
         "eigene_eintraege": len(eigene),
         "mit_antragshilfe": sum(1 for p in programme if "antragshilfe" in p),
         "mit_kurzbeschreibung": sum(1 for p in programme if "kurz_eigen" in p),
+        "derzeit_geschlossen": sum(1 for p in programme if "status" in p),
         "zeilen_im_export": len(zeilen),
         "quelle": QUELLE_INFO,
         "lizenz": "CC BY-ND 4.0 (Förderdatenbank-Daten über CorrelAid / Civic Data Lab)",

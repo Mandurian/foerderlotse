@@ -1,0 +1,48 @@
+{
+  "_hinweis": "Programme, bei denen derzeit keine Anträge möglich sind. Schlüssel = Teil der Programm-URL. Bei Wiederöffnung Eintrag löschen.",
+  "kfw-altersgerecht-umbauen-barriere-455-b": {
+    "offen": false,
+    "text": "Antragsstopp seit 30.07.2026: Die Mittel für 2026 sind ausgeschöpft. Die KfW informiert auf kfw.de/455-B, wenn wieder Anträge möglich sind.",
+    "seit": "2026-07-30"
+  },
+  "ladeinfrastruktur-mehrparteinhauser-weg": {
+    "offen": false,
+    "text": "Beendet: Für Eigentümergemeinschaften endete die Antragsannahme am 02.11.2026. Eine Fortsetzung ist nicht beschlossen.",
+    "seit": "2026-11-02"
+  },
+  "ladeinfrastruktur-mehrparteinhauser-kmu": {
+    "offen": false,
+    "text": "Beendet: Die Antragsfrist ist am 10.11.2026 abgelaufen. Eine Fortsetzung ist nicht beschlossen.",
+    "seit": "2026-11-10"
+  },
+  "ladeinfrastruktur-mehrparteinhauser-unternehmen": {
+    "offen": false,
+    "text": "Beendet: Die Antragsfrist ist am 15.10.2026 abgelaufen.",
+    "seit": "2026-10-15"
+  },
+  "live-500": {
+    "offen": false,
+    "text": "Die Antragsrunde 2026 endete am 10.11.2026.",
+    "seit": "2026-11-10"
+  },
+  "plugin": {
+    "offen": false,
+    "text": "Die Antragsrunde 2026 ist abgeschlossen.",
+    "seit": "2026-01-01"
+  },
+  "zukunft-region": {
+    "offen": false,
+    "text": "Derzeit ist keine Antragstellung möglich.",
+    "seit": "2024-05-24"
+  },
+  "digitalisierung-filmerbe-ffa": {
+    "offen": false,
+    "text": "Für 2026 sind keine Anträge mehr möglich.",
+    "seit": "2026-01-01"
+  },
+  "1000-moore": {
+    "offen": false,
+    "text": "Derzeit ist kein Förderfenster offen.",
+    "seit": "2026-01-01"
+  }
+}

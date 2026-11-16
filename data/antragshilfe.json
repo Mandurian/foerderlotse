@@ -12,7 +12,8 @@
       "altbau",
       "dämmung",
       "heizung",
-      "geerbt"
+      "geerbt",
+      "energieberater"
     ],
     "antragsweg": "Online im BAFA-Portal, selbst oder per Vollmacht durch den Berater",
     "schritte": [
@@ -20,16 +21,16 @@
       "Beratervertrag mit Bedingung abschließen: gilt erst bei Förderzusage",
       "Antrag im BAFA-Portal stellen",
       "Zuwendungsbescheid abwarten, dann Beratung mit Vor-Ort-Termin und Sanierungsfahrplan",
-      "Innerhalb von 6 Monaten nach dem Bewilligungszeitraum den Verwendungsnachweis einreichen"
+      "Nach der Beratung den Verwendungsnachweis mit dem Beratungsbericht beim BAFA einreichen (Frist im Zuwendungsbescheid)"
     ],
     "unterlagen": [
       "Beratervertrag mit Förderbedingung",
       "Beratungsbericht / iSFP",
       "Rechnung des Beraters"
     ],
-    "stolperfalle": "Der Sanierungsfahrplan bringt bei späteren BEG-Einzelmaßnahmen einen Bonus. Erst beraten lassen, dann sanieren.",
+    "stolperfalle": "Der Bonus für den Sanierungsfahrplan gilt seit 21.07.2026 erst ab 30.000 € förderfähigen Kosten und nur für den Betrag darüber. Die Beratung lohnt sich trotzdem als Plan vor größeren Sanierungen.",
     "vor_beginn": true,
-    "hinweis_status": "Läuft laut Richtlinie bis 31.12.2026"
+    "hinweis_status": "Richtlinie läuft bis 31.12.2026"
   },
   {
     "id": "kfw458",
@@ -44,7 +45,15 @@
       "pellet",
       "fernwärme",
       "solarthermie",
-      "heizungstausch"
+      "heizungstausch",
+      "kfw 458",
+      "458",
+      "biomasse",
+      "holzheizung",
+      "hackschnitzel",
+      "brennstoffzelle",
+      "hybridheizung",
+      "waermepumpe"
     ],
     "antragsweg": "Online im KfW-Kundenportal „Meine KfW“",
     "schritte": [
@@ -61,7 +70,7 @@
     ],
     "stolperfalle": "Antrag vor Beginn der Arbeiten. Ein Vertrag ohne Förderbedingung kann den Zuschuss kosten.",
     "vor_beginn": true,
-    "hinweis_status": "Richtlinie im August 2026 neu gefasst, Fördersätze im KfW-Merkblatt prüfen"
+    "hinweis_status": "Neue Regeln seit 21.07.2026 (BEG-Reform), Fördersätze im Merkblatt prüfen"
   },
   {
     "id": "bafaem",
@@ -95,7 +104,7 @@
     ],
     "stolperfalle": "Für Dämmung und Fenster ist meist ein Energieeffizienz-Experte Pflicht. Seine Kosten sind teilweise förderfähig.",
     "vor_beginn": true,
-    "hinweis_status": null
+    "hinweis_status": "Neue Regeln seit 21.07.2026 (BEG-Reform), Fördersätze im Merkblatt prüfen"
   },
   {
     "id": "kfw261",
@@ -108,7 +117,9 @@
       "sanieren",
       "modernisieren",
       "energetisch",
-      "altbau"
+      "altbau",
+      "kfw 261",
+      "261"
     ],
     "antragsweg": "Über deine Hausbank",
     "schritte": [
@@ -116,7 +127,7 @@
       "Bestätigung zum Antrag vom Experten erstellen lassen",
       "Kredit über die Hausbank beantragen, bevor Aufträge vergeben werden",
       "Sanieren, der Experte begleitet die Baustelle",
-      "Bestätigung nach Durchführung einreichen, dann gibt es den Tilgungszuschuss"
+      "Bestätigung nach Durchführung einreichen; einen Tilgungszuschuss gibt es seit 21.07.2026 nur noch für die besseren Effizienzhaus-Stufen"
     ],
     "unterlagen": [
       "Bestätigung zum Antrag",
@@ -124,7 +135,7 @@
     ],
     "stolperfalle": "Die Bank muss den Antrag bei der KfW gestellt haben, bevor du Aufträge vergibst.",
     "vor_beginn": true,
-    "hinweis_status": "Richtlinie im August 2026 neu gefasst"
+    "hinweis_status": "Neue Regeln seit 21.07.2026 (BEG-Reform), Fördersätze im Merkblatt prüfen"
   },
   {
     "id": "kfn-wohnen",
@@ -195,7 +206,9 @@
       "bauen",
       "familie",
       "kinder",
-      "wohneigentum"
+      "wohneigentum",
+      "kfw 300",
+      "300"
     ],
     "antragsweg": "Über deine Hausbank",
     "schritte": [
@@ -217,21 +230,28 @@
   {
     "id": "kfw308",
     "url_enthaelt": [
-      "jung-kauft-alt"
+      "jung-kauft-alt",
+      "kfw.de/308"
     ],
     "stichworte": [
-      "haus kaufen",
-      "altbau",
+      "jung kauft alt",
+      "kfw 308",
+      "308",
+      "altbau kaufen",
+      "altes haus",
       "bestandsimmobilie",
+      "gebrauchtes haus",
       "sanierungsbedürftig",
+      "haus kaufen",
       "familie"
     ],
     "antragsweg": "Über deine Hausbank",
     "schritte": [
-      "Energieausweis des Hauses prüfen, die Effizienzklasse muss schlecht genug sein",
-      "Einkommensgrenze und Kinder-Voraussetzung prüfen",
-      "Kredit vor Unterschrift des Kaufvertrags beantragen",
-      "Sanierung fristgerecht durchführen und nachweisen"
+      "Energieausweis des Hauses prüfen: Effizienzklasse F, G oder H",
+      "Einkommensgrenze (90.000 € bei einem Kind, plus 10.000 € je weiterem Kind) und Kinder-Voraussetzung prüfen",
+      "Kredit über die Hausbank beantragen, bevor der Kaufvertrag unterschrieben wird",
+      "Innerhalb von 54 Monaten nach Zusage sanieren: Effizienzhaus 85 EE oder Einzelmaßnahmen",
+      "Für die Sanierung zusätzlich BEG-Zuschüsse prüfen, etwa für die Heizung"
     ],
     "unterlagen": [
       "Energieausweis",
@@ -240,7 +260,7 @@
     ],
     "stolperfalle": "Mit dem Kredit übernimmst du die Pflicht, das Haus innerhalb einer Frist zu sanieren.",
     "vor_beginn": true,
-    "hinweis_status": null
+    "hinweis_status": "Neue Konditionen seit 03.08.2026; Richtlinie bis 31.12.2026"
   },
   {
     "id": "kfw124",
@@ -254,7 +274,9 @@
       "eigenheim",
       "bauen",
       "wohneigentum",
-      "genossenschaft"
+      "genossenschaft",
+      "kfw 124",
+      "124"
     ],
     "antragsweg": "Über eine Bank, Sparkasse, Bausparkasse oder Versicherung",
     "schritte": [
@@ -284,7 +306,10 @@
       "treppenlift",
       "rollstuhl",
       "einbruchschutz",
-      "umbau"
+      "umbau",
+      "kfw 159",
+      "159",
+      "pflegegrad"
     ],
     "antragsweg": "Über deine Hausbank",
     "schritte": [
@@ -314,21 +339,23 @@
       "bad",
       "dusche",
       "treppenlift",
-      "umbau"
+      "umbau",
+      "kfw 455",
+      "455"
     ],
-    "antragsweg": "Online im KfW-Zuschussportal",
+    "antragsweg": "Derzeit nicht möglich (Antragsstopp seit 30.07.2026)",
     "schritte": [
-      "Prüfen, ob noch Mittel verfügbar sind",
-      "Zuschuss online beantragen, vor Beginn",
-      "Nach dem Umbau Rechnungen hochladen"
+      "Auf kfw.de/455-B prüfen, ob wieder Anträge möglich sind",
+      "Bis dahin den Kredit 159 nutzen oder bei Pflegegrad den Zuschuss der Pflegekasse beantragen",
+      "Erst nach einer Zusage mit dem Umbau beginnen"
     ],
     "unterlagen": [
       "Kostenvoranschläge",
       "Rechnungen nach Abschluss"
     ],
-    "stolperfalle": "Bei ausgeschöpften Mitteln auf den Kredit 159 ausweichen.",
+    "stolperfalle": "Wer jetzt baut, bekommt den Zuschuss nicht nachträglich. Mit dem Umbau erst nach einer Zusage beginnen.",
     "vor_beginn": true,
-    "hinweis_status": "Mittel sind oft für das Jahr ausgeschöpft"
+    "hinweis_status": "Antragsstopp seit 30.07.2026"
   },
   {
     "id": "gewerbe-zu-wohnen",
@@ -373,7 +400,7 @@
       "hybrid",
       "elektrofahrzeug"
     ],
-    "antragsweg": "Online über foerderzentrale.gov.de mit BundID",
+    "antragsweg": "Online über die Förderzentrale des Bundes (foerderzentrale.gov.de) mit BundID; bewilligt wird vom BAFA",
     "schritte": [
       "Fahrzeug auf dich selbst zulassen, als Privatvermögen",
       "BundID-Konto anlegen",
@@ -404,23 +431,19 @@
       "eigentümergemeinschaft",
       "mehrfamilienhaus"
     ],
-    "antragsweg": "Online im Portal laden-im-mehrparteienhaus.de",
+    "antragsweg": "Derzeit nicht möglich (Programm am 02.11. bzw. 10.11.2026 beendet)",
     "schritte": [
-      "Prüfen: Haus mit mindestens 3 Wohnungen, Bauantrag vor dem 24.03.2021",
-      "Kostenvoranschlag einer Elektrofachkraft einholen",
-      "Online-Antrag stellen",
-      "Bescheid abwarten, erst dann beauftragen",
-      "Eigentümerbeschluss innerhalb von 6 Monaten nachreichen",
-      "Nach Umsetzung Rechnungen und Zahlungsbelege hochladen"
+      "Auf laden-im-mehrparteienhaus.de prüfen, ob das Programm fortgesetzt wird",
+      "Regionale Programme von Land, Stadt oder Stadtwerk prüfen"
     ],
     "unterlagen": [
       "Kostenvoranschlag",
       "Eigentümerbeschluss",
       "Rechnungen"
     ],
-    "stolperfalle": "Ladestrom muss aus erneuerbaren Energien stammen.",
+    "stolperfalle": "Ohne Bewilligung keine Förderung: Nicht vorher beauftragen, falls ein neues Programm kommt.",
     "vor_beginn": true,
-    "hinweis_status": "Antragsfrist 10.11.2026"
+    "hinweis_status": "Beendet im November 2026"
   },
   {
     "id": "kfw270",
@@ -434,7 +457,9 @@
       "solaranlage",
       "stromspeicher",
       "batteriespeicher",
-      "speicher"
+      "speicher",
+      "kfw 270",
+      "270"
     ],
     "antragsweg": "Über deine Hausbank",
     "schritte": [
@@ -633,7 +658,10 @@
       "erzieher",
       "fortbildung",
       "aufstieg",
-      "weiterbildung"
+      "weiterbildung",
+      "aufstiegsbafög",
+      "meister-bafög",
+      "meisterbafög"
     ],
     "antragsweg": "Bei der zuständigen Stelle deines Bundeslands, online über afbg-digital.de",
     "schritte": [
@@ -666,11 +694,11 @@
       "jobcenter",
       "arbeitsagentur"
     ],
-    "antragsweg": "Im Gespräch mit der Vermittlung bei Arbeitsagentur oder Jobcenter",
+    "antragsweg": "Agentur für Arbeit; wer Grundsicherungsgeld bezieht, wird vom Jobcenter dorthin weitergeleitet",
     "schritte": [
       "Passenden zertifizierten Kurs (AZAV) suchen",
-      "Termin bei der Vermittlung, Bedarf begründen",
-      "Bildungsgutschein erhalten",
+      "Mit der Vermittlung bei Arbeitsagentur oder Jobcenter den Bedarf besprechen und begründen",
+      "Jobcenter-Kunden: Das Jobcenter leitet an die Agentur für Arbeit weiter, die über den Gutschein entscheidet",
       "Gutschein vor Kursbeginn beim Bildungsträger einlösen"
     ],
     "unterlagen": [
@@ -780,7 +808,7 @@
       "Voraussetzungen prüfen: Alter, Wohnsitz, Behandlung in Deutschland",
       "Klären, ob dein Bundesland mitmacht",
       "Ärztliche Bescheinigung einholen",
-      "Antrag bei der Landesbehörde stellen, oft vor Behandlungsbeginn",
+      "Antrag bei der zuständigen Landesbehörde stellen, in Sachsen beim Bundesamt für Familie und zivilgesellschaftliche Aufgaben; oft vor Behandlungsbeginn",
       "Rechnungen und Kassenabrechnung einreichen"
     ],
     "unterlagen": [

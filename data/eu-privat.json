@@ -4,12 +4,27 @@
     "titel": "Erasmus+ (Studium, Praktikum, Ausbildung im Ausland)",
     "kurz": "Monatlicher Zuschuss für Studium, Praktikum oder Ausbildungsabschnitte im europäischen Ausland. Beantragt wird über die eigene Hochschule oder den Ausbildungsbetrieb.",
     "url": "https://erasmus-plus.ec.europa.eu/de",
-    "art": ["Zuschuss"],
-    "geber": ["EU"],
-    "gebiet": ["_bundesweit"],
+    "art": [
+      "Zuschuss"
+    ],
+    "geber": [
+      "EU"
+    ],
+    "gebiet": [
+      "_bundesweit"
+    ],
     "bereich": [],
-    "stichworte": ["Ausland", "Auslandssemester", "Austausch", "Praktikum im Ausland", "Studium", "Ausbildung"],
-    "traeger": ["Europäische Kommission (über DAAD, NA beim BIBB, Hochschulen)"],
+    "stichworte": [
+      "Ausland",
+      "Auslandssemester",
+      "Austausch",
+      "Praktikum im Ausland",
+      "Studium",
+      "Ausbildung"
+    ],
+    "traeger": [
+      "Europäische Kommission (über DAAD, NA beim BIBB, Hochschulen)"
+    ],
     "unterlagen": "",
     "verfahren": "",
     "fristen": "",
@@ -21,12 +36,27 @@
     "titel": "DiscoverEU",
     "kurz": "Kostenloser Bahnpass für 18-Jährige, um Europa zu erkunden. Vergabe in Bewerbungsrunden mit Quiz.",
     "url": "https://youth.europa.eu/discovereu_de",
-    "art": ["Zuschuss"],
-    "geber": ["EU"],
-    "gebiet": ["_bundesweit"],
+    "art": [
+      "Zuschuss"
+    ],
+    "geber": [
+      "EU"
+    ],
+    "gebiet": [
+      "_bundesweit"
+    ],
     "bereich": [],
-    "stichworte": ["Reisen", "Interrail", "Zug", "Europa", "Bahnpass", "18 Jahre"],
-    "traeger": ["Europäische Kommission"],
+    "stichworte": [
+      "Reisen",
+      "Interrail",
+      "Zug",
+      "Europa",
+      "Bahnpass",
+      "18 Jahre"
+    ],
+    "traeger": [
+      "Europäische Kommission"
+    ],
     "unterlagen": "",
     "verfahren": "",
     "fristen": "Nur in Bewerbungsrunden.",
@@ -38,15 +68,61 @@
     "titel": "Europäisches Solidaritätskorps",
     "kurz": "Freiwilligendienst im In- oder Ausland für 18- bis 30-Jährige. Unterkunft, Verpflegung, Taschengeld und Versicherung sind abgedeckt.",
     "url": "https://youth.europa.eu/solidarity_de",
-    "art": ["Zuschuss"],
-    "geber": ["EU"],
-    "gebiet": ["_bundesweit"],
+    "art": [
+      "Zuschuss"
+    ],
+    "geber": [
+      "EU"
+    ],
+    "gebiet": [
+      "_bundesweit"
+    ],
     "bereich": [],
-    "stichworte": ["Freiwilligendienst", "Ehrenamt", "Ausland", "Engagement", "Volunteer"],
-    "traeger": ["Europäische Kommission (über JUGEND für Europa)"],
+    "stichworte": [
+      "Freiwilligendienst",
+      "Ehrenamt",
+      "Ausland",
+      "Engagement",
+      "Volunteer"
+    ],
+    "traeger": [
+      "Europäische Kommission (über JUGEND für Europa)"
+    ],
     "unterlagen": "",
     "verfahren": "",
     "fristen": "",
+    "lizenz": "",
+    "geaendert": null
+  },
+  {
+    "id": "eigen-kfw308",
+    "titel": "Jung kauft Alt – Wohneigentum für Familien, Bestandserwerb (KfW 308)",
+    "kurz": "",
+    "url": "https://www.kfw.de/308",
+    "art": [
+      "Kredit"
+    ],
+    "geber": [
+      "Bund"
+    ],
+    "gebiet": [
+      "_bundesweit"
+    ],
+    "bereich": [
+      "wohnungsbau_modernisierung"
+    ],
+    "stichworte": [
+      "Jung kauft Alt",
+      "Altbau",
+      "Bestandsimmobilie",
+      "Familie"
+    ],
+    "traeger": [
+      "KfW"
+    ],
+    "unterlagen": "",
+    "verfahren": "",
+    "fristen": "Richtlinie bis 31.12.2026",
     "lizenz": "",
     "geaendert": null
   }
