@@ -5,8 +5,8 @@
   "eigene_eintraege": 3,
   "mit_antragshilfe": 55,
   "mit_kurzbeschreibung": 89,
+  "derzeit_geschlossen": 9,
   "zeilen_im_export": 2575,
   "quelle": "https://fdb.cdl.correlaid.org/id/dataset/foerderdatenbank-programme",
-  "lizenz": "CC BY-ND 4.0 (Förderdatenbank-Daten über CorrelAid / Civic Data Lab)",
-  "derzeit_geschlossen": 9
+  "lizenz": "CC BY-ND 4.0 (Förderdatenbank-Daten über CorrelAid / Civic Data Lab)"
 }
