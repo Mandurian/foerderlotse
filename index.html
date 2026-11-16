@@ -91,6 +91,8 @@ a{color:var(--petrol)}
 .orig{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:.7rem;font-size:.93rem;display:grid;gap:.6rem}
 .draft{font:400 .92rem/1.5 var(--f-body);background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:.7rem;white-space:pre-wrap;overflow-wrap:anywhere}
 .src{font-size:.78rem;color:var(--muted);overflow-wrap:anywhere}
+.hint{background:var(--sun-soft);color:var(--ink);border-radius:6px;padding:.8rem 1rem;display:grid;gap:.5rem;font-size:.95rem}
+.hint p{margin:0}
 .empty{background:var(--sheet);border:1px dashed var(--line);border-radius:6px;padding:1.2rem;color:var(--muted)}
 footer{font-size:.82rem;color:var(--muted);display:grid;gap:.4rem;border-top:1px solid var(--line);padding-top:1rem}
 footer p{margin:0}
@@ -130,6 +132,7 @@ footer p{margin:0}
 
   <section style="display:grid;gap:.9rem" aria-live="polite">
     <div class="reshead"><h2>Passende Programme</h2><span class="count" id="count"></span></div>
+    <div class="hint" id="hinweis" hidden></div>
     <div class="results" id="results"><div class="empty">Programme werden geladen …</div></div>
     <button class="btn2" type="button" id="mehr" hidden>Weitere Treffer zeigen</button>
   </section>
@@ -147,6 +150,23 @@ const LAENDER=[["","Alle Bundesländer"],["baden_wuerttemberg","Baden-Württembe
 const BEREICH={wohnungsbau_modernisierung:["haus","wohnung","bauen","kaufen","sanier","modernis","umbau","eigentum","miete","dach","bad"],energieeffizienz_erneuerbare_energien:["heiz","wärme","energie","solar","photovolt","dämm","strom","fenster"],aus_weiterbildung:["studi","ausbild","weiterbild","schule","kurs","meister","lehrgang","stipend","umschul","semester"],mobilitaet:["auto","fahrzeug","laden","wallbox","fahrrad","bahn"],kultur_medien_sport:["musik","band","film","kunst","kultur","album","sport","kino"],gesundheit_soziales:["gesund","pflege","kind","familie","behind"],arbeit:["arbeit","job","arbeitslos","beruf","entlass"],umwelt_naturschutz:["umwelt","natur","moor","klima","lärm"],existenzgruendung_festigung:["gründ","selbststä","startup","firma"],landwirtschaft_laendliche_entwicklung:["dorf","land","hof","bauer"]};
 const STOP=new Set("und oder der die das den dem des ein eine einen einem einer ich wir mein meine meinen unser unsere unseren mit für fuer auf aus von vom zum zur bei nach über ueber wie was will möchte moechte würde gerne mich mir uns ist sind bin hat haben neue neuen alte alten durch auch noch nicht kein keine sowie dass weil wenn".split(" "));
 
+// Wörter, die in fast jedem Programmtitel stehen und deshalb nichts unterscheiden
+const GENERIC=new Set("zuschuss zuschuesse kredit kredite darlehen beantragen beantragn beantrage antrag antraege staat staatlich staatliche geld kosten hilfe hilfen unterstuetzung programm programme bekommen gibt welche welcher fuer mich 2025 2026 2027 finanzieren bezahlen kostenlos kostenlose praemie tipps moeglich voraussetzungen hoehe".split(" "));
+const SYN=[[/\bfotovoltaik/g,"photovoltaik"],[/\bpv\b/g,"photovoltaik"],[/\be auto\b/g,"elektroauto"],[/\beauto\b/g,"elektroauto"],[/\bwp\b/g,"waermepumpe"]];
+// Häufige Suchen nach Leistungen, die keine Förderprogramme für Privatpersonen sind oder in den Daten fehlen
+const HINWEISE=[
+ {k:["bafoeg"],not:["aufstieg"],t:"BAföG für Schule und Studium beantragst du online bei BAföG Digital. Es steht nicht in den Daten der Förderdatenbank für Privatpersonen; unten siehst du verwandte Programme wie Studienkredit und Stipendien.",u:"https://www.bafög.de/",l:"bafög.de"},
+ {k:["kindergeld","kinderzuschlag","elterngeld","wohngeld","buergergeld","grundsicherung","unterhaltsvorschuss","mutterschaftsgeld","pflegegeld"],t:"Kindergeld, Elterngeld, Wohngeld oder Bürgergeld sind Sozialleistungen, keine Förderprogramme. Sie stehen nicht im Förderlotsen. Zuständig sind Familienkasse, Elterngeldstelle, Wohngeldstelle deiner Stadt oder das Jobcenter; einen Überblick gibt das Familienportal des Bundes.",u:"https://familienportal.de/",l:"familienportal.de"},
+ {k:["balkonkraftwerk","steckersolar","stecker solar","lastenrad","lastenfahrrad"],t:"Balkonkraftwerke und E-Lastenräder fördert der Bund nicht. Zuschüsse gibt es in manchen Bundesländern, Städten und bei Stadtwerken. Frag dort nach oder nutze eine Suche für regionale Programme.",u:"https://www.co2online.de/foerdermittelcheck",l:"Regionale Programme suchen"},
+ {k:["integrationskurs","sprachkurs","deutschkurs"],t:"Integrations- und Berufssprachkurse organisiert das Bundesamt für Migration und Flüchtlinge (BAMF). Die Kosten können ganz oder teilweise übernommen werden.",u:"https://www.bamf.de/",l:"bamf.de"},
+ {k:["wohnungsbaupraemie","bausparvertrag","bausparen","riester","arbeitnehmersparzulage","vermoegenswirksam"],t:"Wohnungsbauprämie, Wohn-Riester und Arbeitnehmer-Sparzulage sind Förderungen beim Sparen. Sie laufen über Bausparkasse, Anbieter oder Finanzamt und stehen nicht in der Förderdatenbank.",u:"https://www.bundesfinanzministerium.de/",l:"Bundesfinanzministerium"},
+ {k:["steuer","absetzen","35c","handwerkerleistung"],t:"Eine energetische Sanierung im selbst genutzten Haus kannst du statt mit Zuschuss auch über die Einkommensteuer fördern lassen (§ 35c EStG, 20 % der Kosten über drei Jahre verteilt). Für dieselbe Maßnahme geht nur eins von beidem.",u:"https://www.bundesfinanzministerium.de/",l:"Bundesfinanzministerium"},
+ {k:["existenzgruendung","gruendung","gruenden","selbststaendig","startup","start up","gruendungszuschuss"],not:["business angel","investieren"],t:"Gründungsförderung wie der Gründungszuschuss der Arbeitsagentur, der ERP-Gründerkredit der KfW oder Programme deiner Landesförderbank richtet sich an Gründerinnen und Gründer. Sie steht nicht in dieser Liste für Privatpersonen.",u:"https://www.foerderdatenbank.de/",l:"Förderdatenbank"},
+ {k:["jung kauft alt","kfw 308"],t:"„Jung kauft Alt“ (KfW 308) fehlt derzeit in den Daten der Förderdatenbank für Privatpersonen. Ähnlich sind „Wohneigentum für Familien“ und das KfW-Wohneigentumsprogramm; die Details zu 308 stehen bei der KfW.",u:"https://www.kfw.de/308",l:"KfW 308"},
+ {k:["baukindergeld"],t:"Das Baukindergeld ist ausgelaufen. Für Familien gibt es heute den Kredit „Wohneigentum für Familien“.",u:"https://www.kfw.de/300",l:"KfW 300"}
+];
+function hinweise(text){const q=" "+norm(text).replace(/[^a-z0-9]+/g," ")+" ";return HINWEISE.filter(h=>h.k.some(k=>q.includes(" "+k))&&!(h.not||[]).some(k=>q.includes(" "+k)))}
+
 const $=s=>document.querySelector(s);
 const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 let checks=store.get("fl-checks",{}), P=[], H={}, last=[], shown=0, lastText="";
@@ -162,30 +182,38 @@ function prep(p){
   p._t=fixT(p.titel);
   const words=s=>" "+norm(s).replace(/[^a-z0-9]+/g," ");
   p._title=words(p._t);
-  p._kw=words([...(p.stichworte||[]),...(h?h.stichworte:[])].join(" "));
+  p._kw=words([...(p.stichworte||[]),...(h?h.stichworte:[]),p.kurz_eigen||""].join(" "));
   p._hilfeKw=h?h.stichworte.map(norm):[];
-  p._body=words([p.kurz_eigen,p.kurz,p.beschreibung].join(" "));
+  p._body=words([p.kurz,p.beschreibung].join(" "));
   p._region=(p.gebiet||[]).filter(g=>g!=="_bundesweit");
   return p;
 }
+// Einfacher Wortstamm: gängige Endungen ab, dann höchstens 7 Zeichen (sanieren, Sanierung → sanier)
+function stem(w){for(const e of ["ungen","ung","ieren","iert","en","er","es","e","s","n"])if(w.endsWith(e)&&w.length-e.length>=4){w=w.slice(0,-e.length);break}return w.length>7?w.slice(0,7):w}
+function qnorm(text){let q=norm(text).replace(/[^a-z0-9]+/g," ");for(const [a,b] of SYN)q=q.replace(a,b);return q}
 function tokens(text){
-  return [...new Set(norm(text).split(/[^a-z0-9]+/).filter(w=>w.length>=3&&!STOP.has(w)))].map(w=>w.length>7?w.slice(0,7):w);
+  return [...new Set(qnorm(text).split(" ").filter(w=>w.length>=3&&!STOP.has(w)&&!GENERIC.has(w)&&!w.startsWith("foerder")))].map(w=>({full:w,t:stem(w)}));
 }
 function match(text,art,land){
-  const q=" "+norm(text).replace(/[^a-z0-9]+/g," "), tk=tokens(text);
+  const q=" "+qnorm(text), tk=tokens(text);
   const areas=Object.entries(BEREICH).filter(([,ws])=>ws.some(w=>q.includes(" "+norm(w)))).map(([b])=>b);
   const res=[];
+  // Seltene Wörter zählen mehr als Wörter, die in vielen Programmen vorkommen
+  const N=new Set(P.map(p=>p._t)).size, idf={};
+  for(const {t} of tk){const w=" "+t;const df=new Set(P.filter(p=>p._title.includes(w)||p._kw.includes(w)).map(p=>p._t)).size;idf[t]=Math.max(0.4,Math.log((N+1)/(df+1)))}
   for(const p of P){
     if(art&&!p.art.includes(art))continue;
     if(p._region.length&&land&&!p._region.includes(land))continue;
     let sc=0; const hits=new Set();
     // Stichwörter der Antragshilfe: längere, genauere Begriffe zählen mehr als kurze
     for(const k of p._hilfeKw){ if(k.length>2&&q.includes(" "+k.replace(/[^a-z0-9]+/g," "))){sc+=3+Math.min(k.length,12)/2;hits.add(k)} }
-    for(const t of tk){
-      const w=" "+t;
-      if(p._title.includes(w)){sc+=4;hits.add(t)}
-      else if(p._kw.includes(w)){sc+=3;hits.add(t)}
-      else if(t.length>=5&&p._body.includes(w)){sc+=1;hits.add(t)}
+    for(const {full,t} of tk){
+      const w=" "+t, f=" "+full;
+      if(p._title.includes(w)){sc+=4*idf[t];hits.add(t)}
+      else if(p._kw.includes(w)){sc+=3*idf[t];hits.add(t)}
+      else if(t.length>=5&&p._body.includes(w)){sc+=1*idf[t];hits.add(t)}
+      // ganzes Wort (nicht nur Wortanfang) passt: genauer Treffer
+      if(full!==t&&(p._title.includes(f)||p._kw.includes(f)))sc+=2;
     }
     if(!sc)continue;
     if(areas.some(a=>p.bereich.includes(a)))sc+=3;
@@ -232,12 +260,12 @@ function card({p,pct,hits,laender},text){
 }
 function render(more){
   const start=more?shown:0, n=Math.min(start+10,last.length);
-  if(!more)$("#results").innerHTML="";
+  if(!more){const hs=hinweise(lastText);$("#hinweis").innerHTML=hs.map(h=>`<p>${esc(h.t)} <a href="${esc(h.u)}" target="_blank" rel="noopener">${esc(h.l)} ↗</a></p>`).join("");$("#hinweis").hidden=!hs.length;$("#results").innerHTML="";}
   $("#results").insertAdjacentHTML("beforeend",last.slice(start,n).map(r=>card(r,lastText)).join(""));
   shown=n;
   $("#count").textContent=last.length?`${last.length} Treffer`:"";
   $("#mehr").hidden=shown>=last.length;
-  if(!last.length)$("#results").innerHTML=`<div class="empty">Keine Treffer. Beschreibe dein Vorhaben mit konkreten Begriffen, etwa „Wärmepumpe“, „Studium“ oder „barrierefreies Bad“, oder wähle oben ein Beispiel.</div>`;
+  if(!last.length)$("#results").innerHTML=`<div class="empty">Keine passenden Förderprogramme gefunden. Beschreibe dein Vorhaben mit konkreten Begriffen, etwa „Wärmepumpe“, „Studium“ oder „barrierefreies Bad“, oder wähle oben ein Beispiel.</div>`;
 }
 function run(){
   lastText=$("#vorhaben").value;

@@ -657,6 +657,7 @@
       "foerderung-berufliche-weiterbildung"
     ],
     "stichworte": [
+      "bildungsgutschein",
       "weiterbildung",
       "umschulung",
       "kurs",
@@ -1106,6 +1107,35 @@
     ],
     "stolperfalle": "Mehrere Bewerbungen erhöhen die Chance.",
     "vor_beginn": false,
+    "hinweis_status": null
+  },
+  {
+    "id": "denkmal",
+    "url_enthaelt": [
+      "enkmalschutz-sonderprogramm"
+    ],
+    "stichworte": [
+      "denkmal",
+      "denkmalgeschützt",
+      "denkmalschutz",
+      "baudenkmal",
+      "kulturdenkmal"
+    ],
+    "antragsweg": "Über die Denkmalschutzbehörde deines Bundeslands, die Projekte beim Bund vorschlägt",
+    "schritte": [
+      "Untere Denkmalschutzbehörde deiner Stadt oder deines Kreises ansprechen",
+      "Maßnahme, Kostenschätzung und Finanzierung mit Eigenanteil beschreiben",
+      "Das Land wählt Projekte aus und meldet sie zu festen Fristen beim Bund an",
+      "Erst nach dem Bewilligungsbescheid mit den Arbeiten beginnen",
+      "Nach Abschluss den Verwendungsnachweis einreichen"
+    ],
+    "unterlagen": [
+      "Denkmaleigenschaft / Eintrag in die Denkmalliste",
+      "Kostenschätzung",
+      "denkmalrechtliche Genehmigung"
+    ],
+    "stolperfalle": "Gefördert werden nur besonders bedeutende Denkmale, und ein Eigenanteil ist Pflicht. Für normale Sanierungen am Denkmal kommen auch die BEG-Programme und Steuervorteile infrage.",
+    "vor_beginn": true,
     "hinweis_status": null
   }
 ]
